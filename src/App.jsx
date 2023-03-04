@@ -1,33 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+// import Router
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+//import constant
+import { pages } from './utils/constants'
+
+//import pages
+import Assign from './components/Assign'
+import DashboardLayout from './components/Dashboard'
+import History from './components/History'
+import Login from './components/Login'
+import Profile from './components/Profile'
+import Setting from './components/Setting'
+import Chat from './components/Chat'
+
+//import style
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={pages.DASHBOARD} element={<DashboardLayout />}>
+          <Route index element={<Assign />} /> {/* assign task */}
+          <Route path={pages.HISTORY} element={<History />} />
+          <Route path={pages.CHAT} element={<Chat />} />
+          <Route path={pages.PROFILE} element={<Profile />} />
+          <Route path={pages.SETTING} element={<Setting />} />
+        </Route>
+
+        <Route path={pages.LOGIN} element={<Login />}>
+          <Route index element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
