@@ -19,21 +19,26 @@ import './App.css'
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      {/* <Route>
+        <Route path={pages.LOGIN} element={<Login />}/>
         <Route path={pages.DASHBOARD} element={<DashboardLayout />}>
-          <Route index element={<Assign />} /> {/* assign task */}
-          <Route path={pages.HISTORY} element={<History />} />
-          <Route path={pages.CHAT} element={<Chat />} />
-          <Route path={pages.PROFILE} element={<Profile />} />
-          <Route path={pages.SETTING} element={<Setting />} />
+          <Route index element={<Assign />} /> 
+          <Route path={pages.HISTORY} element={<History />}/>
+          <Route path={pages.CHAT} element={<Chat />}/>
+          <Route path={pages.PROFILE} element={<Profile />}/>
+          <Route path={pages.SETTING} element={<Setting />}/>
         </Route>
-
-        <Route path={pages.LOGIN} element={<Login />}>
-          <Route index element={<Login />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      </Route> */}
+      <Route path={pages.LOGIN} element={<Login/>}/>
+      <Route path={pages.DASHBOARD} element={<DashboardLayout/>}>
+        <Route index element={<Assign />} /> 
+        <Route path={pages.HISTORY} element={<History />}/>
+        <Route path={pages.CHAT} element={<Chat />}/>
+        <Route path={pages.PROFILE} element={<Profile />}/>
+        <Route path={pages.SETTING} element={<Setting />}/>
+      </Route>
+    </Routes>
   )
 }
 
