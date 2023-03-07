@@ -6,6 +6,7 @@ export const pages ={
     CHAT: 'chat',
     PROFILE: 'profile',
     SETTING: 'setting',
+    REGISTER: 'register',
 };
 
 export const API_URL = '';

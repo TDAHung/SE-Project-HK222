@@ -12,6 +12,7 @@ import Login from './components/Login'
 import Profile from './components/Profile'
 import Setting from './components/Setting'
 import Chat from './components/Chat'
+import Register from './components/Register'
 
 //import style
 import './App.css'
@@ -30,7 +31,9 @@ function App() {
           <Route path={pages.SETTING} element={<Setting />}/>
         </Route>
       </Route> */}
-      <Route path={pages.LOGIN} element={<Login/>}/>
+      <Route path={pages.LOGIN} element={<Login/>}>
+        <Route path={pages.REGISTER} element={<Register/>}/>
+      </Route>
       <Route path={pages.DASHBOARD} element={<DashboardLayout/>}>
         <Route index element={<Assign />} /> 
         <Route path={pages.HISTORY} element={<History />}/>
