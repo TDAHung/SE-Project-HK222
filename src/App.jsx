@@ -21,19 +21,8 @@ function App() {
 
   return (
     <Routes>
-      {/* <Route>
-        <Route path={pages.LOGIN} element={<Login />}/>
-        <Route path={pages.DASHBOARD} element={<DashboardLayout />}>
-          <Route index element={<Assign />} /> 
-          <Route path={pages.HISTORY} element={<History />}/>
-          <Route path={pages.CHAT} element={<Chat />}/>
-          <Route path={pages.PROFILE} element={<Profile />}/>
-          <Route path={pages.SETTING} element={<Setting />}/>
-        </Route>
-      </Route> */}
-      <Route path={pages.LOGIN} element={<Login/>}>
-        <Route path={pages.REGISTER} element={<Register/>}/>
-      </Route>
+      <Route path={pages.LOGIN} element={<Login/>} />
+      <Route path={pages.REGISTER} element={<Register/>}/>
       <Route path={pages.DASHBOARD} element={<DashboardLayout/>}>
         <Route index element={<Assign />} /> 
         <Route path={pages.HISTORY} element={<History />}/>
