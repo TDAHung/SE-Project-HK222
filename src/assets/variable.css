@@ -1,0 +1,58 @@
+:root {
+    --primary-color:#FFFFFF;
+    --theme-purple:#2E0C7E;
+    --theme-yellow:#FDA20E;
+    --theme-gray:#E5E5E5;
+    --splash-art: url(./assets/images/splash.jpg);
+}
+.button {
+    background-color: var(--primary-color);
+    color: var(--theme-purple);
+    padding: 12px 24px;
+    border-radius: 4px;
+}
+
+.nav-bar {
+    position: absolute;
+    width: 300px;
+    height: 1024px;
+    left: 0px;
+    top: 0px;
+    background: var(--theme-purple);
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.06);
+}
+.right-panel{
+    position: absolute;
+        width: 234px;
+        height: 957px;
+        left: 1206px;
+        top: 67px;
+        background: var(--theme-gray);
+}
+.splash{
+    background-image: var(--splash-art);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+.login-panel{
+    position: absolute;
+    width: 380px;
+    height: 554px;
+    left: 530px;
+    top: 197px;
+
+    background: var(--theme-yellow);
+    border-radius: 8px;
+}
+.sign-up-panel{
+    position: absolute;
+    width: 380px;
+    height: 554px;
+    left: 530px;
+    top: 197px;
+
+    background: var(--primary-color);
+    border-radius: 8px;
+}
