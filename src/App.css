@@ -36,6 +36,17 @@
 .card {
   padding: 2em;
 }
+@font-face{
+  font-family: 'Open Sans';
+  src: url('./assets/fonts/static/OpenSans/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+}
 
 .read-the-docs {
   color: #888;
