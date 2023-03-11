@@ -7,6 +7,9 @@ import { useState } from 'react';
 
 //import style
 import './Register.css'
+import '../../assets/variable.css'
+import upload from '../../assets/images/export.jpg';
+
 
 const Register = () =>{
     const [registerError, setRegisterError] = useState('');
@@ -102,13 +105,18 @@ const Register = () =>{
 
     return (
 
-    <div className="Register">
+    <div className="Register" >
+
+
         <Form 
             layout="vertical"
             colon={false}
             onFinish={onRegister}
             onFieldsChange={onFieldsChange}
+            className="FormRegister"
         >
+            <div className="Register__title">Create An Account</div>
+            <div className="Register__line"></div>
             {renderedFormItem}
             <Form.Item className="Modal__labelForm">
                 <label>Set up your Avatar</label>
@@ -132,12 +140,12 @@ const Register = () =>{
                     }}
                 >
                     <div className="Register__file">
-                        <div className="Register__file__img"><img src={null} alt="export image" /></div>
+                        <div className="Register__file__img"><img src={upload} alt="export image" /></div>
                         <div className="Register__file__content">Drag image or browse to <span style={{ color: "#FF69A5" }}>select file</span></div>
                     </div>
                 </Dragger>
             </Form.Item>
-            <Button htmlType='submit' className="Register__btn">Register</Button>
+            <Button htmlType='submit' className="Register__btn button">Register</Button>
       </Form>
     </div>
     );

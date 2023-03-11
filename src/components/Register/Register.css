@@ -4,7 +4,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    background-image: url(../../assets/images/splash.jpg);
+    background-size: cover;
 }
+
 
 .Register__btn{
     display: flex;
@@ -21,7 +25,32 @@
     font-size: 1.6rem;
 }
 
+.Register__file{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .Register__labelForm{
     display: flex;
     justify-content: flex-start;
+}
+
+.FormRegister{
+    padding: 2rem;
+    background-color: var(--primary-color);
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.Register__title{
+    text-align: center;
+    font-family: 'OpenSans';
+    font-size: 2rem;
+}
+
+.Register__line{
+    height: 0.2rem;
+    background-color: #D6E4EC;
+    margin: 1rem 0;
 }
