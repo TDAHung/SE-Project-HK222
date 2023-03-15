@@ -1,0 +1,41 @@
+.login{
+    height: 100%;
+    background-color: white;
+}
+
+.login__wrapper{
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.login__wrapper__left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.login__img{
+    width: 15%;
+}
+
+.login__wrapper__right{
+    display: flex;
+    padding: 0 10rem;
+    align-items: center;
+    background-color: #FDA20E;
+    justify-content: center;
+    width: 30%;
+}
+
+.login__btn{
+    margin-top: 6rem;
+    width: 100%;
+    background-color: #2E0C7E;
+    color: white;
+}
+
+.login__form{
+    width: 100%;
+}

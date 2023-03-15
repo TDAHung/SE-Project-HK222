@@ -1,6 +1,5 @@
 import { Button, Form, Input } from 'antd';
 import { message, Upload } from "antd";
-import Dragger from 'antd/es/upload/Dragger';
 
 //import hooks
 import { useState } from 'react';
