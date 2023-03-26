@@ -85,6 +85,7 @@ const Login = () =>{
                     </div>
                 </div>
                 <div className='login__wrapper__right'>
+                    <div className="login__title">Welcome</div>
                     <div className="login__form">
                         <Form layout="vertical"
                             colon={false}
