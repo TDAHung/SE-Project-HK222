@@ -1,0 +1,37 @@
+.header{
+    height: 6.5rem;
+    width: 100%;
+    background-color: #FDA20E;
+    position: absolute;
+    top: 0;
+    z-index: -99999;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header__info{
+    display: flex;
+    width: 25%;
+    align-items: center;
+}
+
+.user__info{
+    display: flex;
+    margin-left: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user__name{
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #FFFFFF;
+    margin-right: 3rem;
+    text-align: center;
+}
+
+.user__img{
+    border-radius: 1rem;
+}
