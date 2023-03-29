@@ -3,7 +3,6 @@ import { useState } from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import "react-pro-sidebar/dist/css/styles.css";
 import "./dashboard.css"
-import Topbar from "./global/Topbar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "./theme";
@@ -15,6 +14,8 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';//profile
 import SettingsIcon from '@mui/icons-material/Settings';
 import { MenuOutlined } from "@mui/icons-material";
 import { pages } from "../../utils/constants";
+
+import avatarUrl from "../../assets/images/splash.jpg";
 
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -43,8 +44,9 @@ const DashboardLayout = () => {
     
 
     return (
-        
+        <div className="dashboard">
         <Box
+            className="dashboard__sidebar"
             sx={{
                 "& .pro-sidebar-inner": {
                     background: "#2E0C7E !important",
@@ -99,7 +101,7 @@ const DashboardLayout = () => {
                                 <img
                                     width="100px"
                                     height="100px"
-                                    src={`../../assets/images/splash.jpg`}
+                                    src={avatarUrl}
                                     style={{ cursor: "pointer", borderRadius: "50%"}}
                                 />
                             </Box>
@@ -111,11 +113,11 @@ const DashboardLayout = () => {
                         </Box>
                     )}
                     {/* Menu items side */}
-                    <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+                    <Box>
                         <Typography
-                            variant="h3"
+                            variant={isCollapsed ? "h4" : "h3"}
                             color="#FFFFFF"
-                            sx={{m: "15px 0 5px 20px"}}
+                            sx={!isCollapsed ? {m: "15px 0 5px 20px"}:{m:"15px 0 0 10px"}}
                         >
                             MAIN MENU
                         </Typography>
@@ -141,9 +143,9 @@ const DashboardLayout = () => {
                             setSelected={setSelected}
                         />
                         <Typography
-                            variant="h3"
+                            variant={isCollapsed ? "h4" : "h3"}
                             color="#FFFFFF"
-                            sx={{m: "15px 0 5px 20px"}}
+                            sx={!isCollapsed ? {m: "15px 0 5px 20px"}:{m:"15px 0 0 3px"}}
                         >
                             OTHERS
                         </Typography>
@@ -164,8 +166,9 @@ const DashboardLayout = () => {
                     </Box>
                 </Menu>
             </ProSidebar>
-            <Outlet/>
         </Box>
+        <Outlet /> 
+        </div>
     )
 }
 
