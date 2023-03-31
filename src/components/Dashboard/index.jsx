@@ -56,7 +56,7 @@ const DashboardLayout = () => {
                     backgroundColor: "transparent !important",
                 },
                 "& .pro-inner-item": {
-                    padding: "5px 35px 5px 20px !important",
+                    padding: "0.5rem 3.5rem 0.5rem 2rem !important",
                 },
                 "& .pro-inner-item:hover": {
                     color: "#00d2d3 !important",
@@ -74,7 +74,7 @@ const DashboardLayout = () => {
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         icon={isCollapsed ? <MenuOutlined /> : undefined}
                         style={{
-                            margin: "10px 0 20px 0",
+                            margin: "1rem 0 2rem 0",
                             color: "#FFF",
                         }}
                     >
@@ -99,15 +99,15 @@ const DashboardLayout = () => {
                         <Box mb="25px">
                             <Box display="flex" justifyContent="center" alignItems="center">
                                 <img
-                                    width="100px"
-                                    height="100px"
+                                    width="10rem"
+                                    height="10rem"
                                     src={avatarUrl}
                                     style={{ cursor: "pointer", borderRadius: "50%"}}
                                 />
                             </Box>
 
                             <Box textAlign="center">
-                                <Typography variant="h2" fontWeight="bold" sx={{ m: "10px 0 0 0" }} color={colors.grey[100]}>Hung Tran</Typography>
+                                <Typography variant="h2" fontWeight="bold" sx={{ m: "1rem 0 0 0" }} color={colors.grey[100]}>Hung Tran</Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>Leader</Typography>
                             </Box>
                         </Box>
@@ -117,7 +117,7 @@ const DashboardLayout = () => {
                         <Typography
                             variant={isCollapsed ? "h4" : "h3"}
                             color="#FFFFFF"
-                            sx={!isCollapsed ? {m: "15px 0 5px 20px"}:{m:"15px 0 0 10px"}}
+                            sx={!isCollapsed ? {m: "1.5rem 0 0.5rem 2rem"}:{m:"1.5rem 0 0 1rem"}}
                         >
                             MAIN MENU
                         </Typography>
@@ -145,7 +145,7 @@ const DashboardLayout = () => {
                         <Typography
                             variant={isCollapsed ? "h4" : "h3"}
                             color="#FFFFFF"
-                            sx={!isCollapsed ? {m: "15px 0 5px 20px"}:{m:"15px 0 0 3px"}}
+                            sx={!isCollapsed ? {m: "1.5rem 0 0.5rem 2rem"}:{m:"1.5rem 0 0 0.3rem"}}
                         >
                             OTHERS
                         </Typography>
