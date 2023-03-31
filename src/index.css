@@ -1,34 +1,35 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+
+html,
+body,
+#root,
+.app,
+.content {
+  height: 100%;
+  width: 100%;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-html {
-    font-size: 62.5%;
-    height: 100%;
-    width: 100%;
+.app {
+  display: flex;
+  position: relative;
 }
 
-body {
-    background-color: #EFF3FD;
-    background-size: cover;
-    height: 100%;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-ul {
-    list-style-type: none;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
 }
 
-img {
-    width: 100%;
-    object-fit: cover;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
 }
 
-a {
-    text-decoration: none;
-}
-
-#root {
-    height: 100%;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
