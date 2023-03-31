@@ -9,4 +9,5 @@ export const pages ={
     REGISTER: 'register',
 };
 
-export const API_URL = '';
+//test
+export const API_URL = 'https://64268165556bad2a5b511ad5.mockapi.io';

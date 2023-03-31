@@ -8,16 +8,18 @@ import './Login.css';
 //import image
 import logo from '../../assets/images/Logo.jpg';
 
+
 const Login = () =>{
     const [loginError, setLoginError] = useState('');
     const [canSubmit, setCanSubmit] = useState(true);
 
       // Check password regex in rules if there is any
-  const onLogin = async () => {
+  const onLogin = (event) => {
     if (canSubmit) {
       try {
         setCanSubmit(false)
-        const submitUsername = values.username.trim();
+        // const submitUsername = values.username.trim();
+        console.log(event);
       } catch (err) {
         setLoginError(err.response.data.message)
       } finally {
@@ -30,8 +32,6 @@ const Login = () =>{
   const onFieldChange = () => {
     setLoginError('');
   }
-
-
       // formItems elements data
     const formItems = [
     {
@@ -89,7 +89,7 @@ const Login = () =>{
                     <div className="login__form">
                         <Form layout="vertical"
                             colon={false}
-                            onFinish={onLogin}
+                            onFinish={(event)=>{onLogin(event)}}
                             onFieldsChange={onFieldChange}>
                             {renderedFormItem}
                             <Button disabled={!canSubmit} htmlType='submit' className="login__btn">Login</Button>

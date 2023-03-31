@@ -14,6 +14,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';//profile
 import SettingsIcon from '@mui/icons-material/Settings';
 import { MenuOutlined } from "@mui/icons-material";
 import { pages } from "../../utils/constants";
+import Header from "../Header";
 
 import avatarUrl from "../../assets/images/splash.jpg";
 
@@ -45,6 +46,7 @@ const DashboardLayout = () => {
 
     return (
         <div className="dashboard">
+        <Header />
         <Box
             className="dashboard__sidebar"
             sx={{
