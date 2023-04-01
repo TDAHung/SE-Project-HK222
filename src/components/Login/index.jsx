@@ -1,6 +1,8 @@
 //import lib
 import { Button, Form, Input } from 'antd'
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 
 //import style
 import './Login.css';
@@ -8,16 +10,40 @@ import './Login.css';
 //import image
 import logo from '../../assets/images/Logo.jpg';
 
+//import api
+import User from '../../controller/user/userController';
+
+//import constant
+import { pages } from '../../utils/constants';
+
+
 const Login = () =>{
     const [loginError, setLoginError] = useState('');
     const [canSubmit, setCanSubmit] = useState(true);
+    const [loginData, setLoginData] = useState({});
+
+    const user = new User();
+
+    useEffect(()=>{
+        const fetch = async () =>{
+          const data = await user.getAllUser();
+          data.forEach((user)=>{
+            if(String(loginData.username) === String(user.username) 
+            && String(loginData.password) === String(user.password)){
+              localStorage.setItem('user-id',user.id);
+              return;
+            }
+          });
+        }
+        fetch();
+    },[loginData]);
 
       // Check password regex in rules if there is any
-  const onLogin = async () => {
+  const onLogin = (event) => {
     if (canSubmit) {
       try {
         setCanSubmit(false)
-        const submitUsername = values.username.trim();
+        setLoginData({...event});
       } catch (err) {
         setLoginError(err.response.data.message)
       } finally {
@@ -30,8 +56,6 @@ const Login = () =>{
   const onFieldChange = () => {
     setLoginError('');
   }
-
-
       // formItems elements data
     const formItems = [
     {
@@ -78,6 +102,7 @@ const Login = () =>{
 
     return (
         <div className="login">
+          {localStorage.getItem('user-id') && <Navigate to={pages.DASHBOARD} replace={true}/>}
             <div className='login__wrapper'>
                 <div className='login__wrapper__left'>
                     <div className="login__img">
@@ -89,7 +114,7 @@ const Login = () =>{
                     <div className="login__form">
                         <Form layout="vertical"
                             colon={false}
-                            onFinish={onLogin}
+                            onFinish={(event)=>{onLogin(event)}}
                             onFieldsChange={onFieldChange}>
                             {renderedFormItem}
                             <Button disabled={!canSubmit} htmlType='submit' className="login__btn">Login</Button>

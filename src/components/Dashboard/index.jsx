@@ -1,10 +1,9 @@
-import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { Outlet, Navigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import "react-pro-sidebar/dist/css/styles.css";
 import "./dashboard.css"
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
 import { tokens } from "./theme";
 //import { HomeOutlined } from "@mui/icons-material";
 import AssignmentIcon from '@mui/icons-material/Assignment';
@@ -14,9 +13,10 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';//profile
 import SettingsIcon from '@mui/icons-material/Settings';
 import { MenuOutlined } from "@mui/icons-material";
 import { pages } from "../../utils/constants";
+import Header from "../Header";
 
+import User from "../../controller/user/userController";
 import avatarUrl from "../../assets/images/splash.jpg";
-
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -41,10 +41,26 @@ const DashboardLayout = () => {
     const colors = tokens(theme.palette.mode);
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [selected, setSelected] = useState('Dashboard');
-    
+
+    const [userData, setUserData] = useState({});
+    useEffect(()=>{
+        try{
+        const user = new User();
+        const id = localStorage.getItem('user-id');
+        const fetchAPI = async () =>{
+            const data = await user.getUser(id);
+            setUserData({...data});
+        }
+        fetchAPI();
+    }catch(error){
+        console.log(error);
+    }
+    },[]);
 
     return (
         <div className="dashboard">
+        {!localStorage.getItem('user-id') && <Navigate to={pages.LOGIN} replace={true}/>}
+        <Header />
         <Box
             className="dashboard__sidebar"
             sx={{
@@ -101,13 +117,13 @@ const DashboardLayout = () => {
                                 <img
                                     width="100px"
                                     height="100px"
-                                    src={avatarUrl}
+                                    src={userData.imgUrl}
                                     style={{ cursor: "pointer", borderRadius: "50%"}}
                                 />
                             </Box>
 
                             <Box textAlign="center">
-                                <Typography variant="h2" fontWeight="bold" sx={{ m: "10px 0 0 0" }} color={colors.grey[100]}>Hung Tran</Typography>
+                                <Typography variant="h2" fontWeight="bold" sx={{ m: "10px 0 0 0" }} color={colors.grey[100]}>{userData.name}</Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>Leader</Typography>
                             </Box>
                         </Box>
