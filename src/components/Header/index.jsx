@@ -2,7 +2,7 @@ import "./Header.css";
 import notify from "../../assets/images/notify.png";
 import avatar from "../../assets/images/avatar.jpg"
 import { useEffect, useState } from "react";
-import { userResponse } from "../../model/Auth/user/userModel";
+import { userResponse } from "../../controller/Auth/user/userModel";
 
 const Header = () =>{
     const [userData, setUserData] = useState();
