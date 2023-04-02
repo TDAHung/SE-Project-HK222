@@ -31,7 +31,7 @@
     text-align: center;
 }
 
-.user__img {
+.user__img img{
     border-radius: 50%;
     width: 5rem;
 }
