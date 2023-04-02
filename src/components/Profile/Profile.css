@@ -1,66 +1,53 @@
 .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* background-color: rgb(0, 0, 0); */
     width: 100%;
     height: 100%;
-    padding: 20px;
-    z-index: 1;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 2.0rem;
-    text-align: center;
     /* center all divs */
 }
 
-.profile-header {
-    margin-bottom: 20px;
-    margin-right: 50px;
+.profile__img{
+    width: 30%;
 }
 
-.profile-header h1 {
-    margin-top: 0;
-}
-
-.profile-img {
-    width:200px;
-    height: 200px;
-    object-fit: cover;
+.profile__img img{
     border-radius: 50%;
 }
-.profile-img:hover {
+.profile__img img:hover {
     transform: scale(1.1);
     border: 3px solid white;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
     transition: transform 0.2s ease-in-out;
-    
-   
 }
-.profile-body {
+.profile__body {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 40%;
+    font-family: 'Poppins';
 }
 
-.profile-section {
-    margin-bottom: 20px;
+Form{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
 }
 
-.profile-section h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
+.profile__button{
+    background-color: #783EFD;
+    color: white;
+    font-family: 'Poppins';
+    width: 30%;
+    margin: 0 auto;
 }
 
-.profile-section ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.profile-section li::before {
-    content: "•";
-    margin-right: 5px;
+.profile__name, .profile__username, .profile__password{
+    color:#783EFD;
+    font-family: 'Poppins';
 }
