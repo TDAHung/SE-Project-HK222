@@ -30,7 +30,7 @@ const Profile = () => {
         fetch();
     },[]);
 
-    function getCurrentDate(separator='-'){
+    const getCurrentDate = (separator='-') => {
 
         let newDate = new Date()
         let date = newDate.getDate();
@@ -38,7 +38,7 @@ const Profile = () => {
         let year = newDate.getFullYear();
         
         return `${date}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
-        }
+    }
 
     const onEdit = async () => {
         if(isEdit){
