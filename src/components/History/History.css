@@ -1,0 +1,30 @@
+.table{
+    width: 60%;
+    margin-top: 10rem;
+}
+
+.table__title{
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 3.5rem;
+}
+
+.table__row{
+    font-family: 'Poppins';
+    font-weight: 500;
+    color: #192A3E;
+}
+
+.table__user{
+    display: flex;
+    align-items: center;
+}
+
+.table__user__img{
+    width: 15%;
+    margin-right: 2rem;
+}
+
+.table__user__img img{
+    border-radius: 50%;
+}

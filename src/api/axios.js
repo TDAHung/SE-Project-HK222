@@ -28,3 +28,7 @@ export const get = async (url, option = {}) =>{
     const response = await Axios.get(url, option);
     return response.data; 
 }
+
+export const add = async (url, data) => {
+    await Axios.post(url,data);
+}
