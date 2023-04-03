@@ -25,6 +25,14 @@ class User {
             console.log(error);
         }
     }
+
+    async updateUser(id,data){
+        try{
+            await Axios.update(`/users/${id}`,data);
+        }catch(error){
+            console.log(error);
+        }
+    }
 };
 
 export default User;

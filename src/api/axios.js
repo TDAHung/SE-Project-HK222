@@ -24,6 +24,12 @@ Axios.interceptors.request.use((config) => {
     return Promise.reject(error)
 });
 
+Axios.interceptors.response.use(config=>{
+    return config;
+}, error=>{
+    return Promise.reject(error)
+})
+
 export const get = async (url, option = {}) =>{
     const response = await Axios.get(url, option);
     return response.data; 
@@ -31,4 +37,8 @@ export const get = async (url, option = {}) =>{
 
 export const add = async (url, data) => {
     await Axios.post(url,data);
+}
+
+export const update = async (url,data) => {
+    await Axios.put(url, data);
 }
