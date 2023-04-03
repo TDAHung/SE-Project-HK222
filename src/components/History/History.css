@@ -1,18 +1,21 @@
 .table{
     width: 60%;
-    margin-top: 10rem;
+    padding-left: 5rem;
+    padding-top: 8rem;
 }
 
 .table__title{
     font-family: 'Montserrat';
     font-weight: 700;
     font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: #000000;
 }
-
 .table__row{
     font-family: 'Poppins';
     font-weight: 500;
     color: #192A3E;
+    height: 5%;
 }
 
 .table__user{
@@ -27,4 +30,12 @@
 
 .table__user__img img{
     border-radius: 50%;
+}
+
+.table__footer{
+    color: #232638;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 1.6rem;
+    padding-left: 4rem;
 }

@@ -12,6 +12,26 @@ import User from "../../controller/user/userController";
 import './History.css'
 import logo from '../../assets/images/splash.jpg'
 
+const History = () =>{
+    const [taskData, setTaskData] = useState([]);
+    const [loading,setLoading] = useState(false);
+    const [users,setUsers] = useState([]);
+
+    const [tableParams, setTableParams] = useState({
+        pagination: {
+          current: 1,
+          pageSize: 6,
+        }
+    });
+
+    const task = new Task();
+
+    const completeTask = async (id) =>{
+        console.log(id);
+        await task.deleteTask(id);
+    }
+
+    
 const columns = [
     {
         title: 'Week',
@@ -79,7 +99,7 @@ const columns = [
         render: (_,record)=>{
             return(
                 <>
-                    <CheckOutlined style={{color:"#783EFD", cursor:"pointer"}} onClick={()=>{console.log(record);}}/>
+                    <CheckOutlined style={{color:"#783EFD", cursor:"pointer"}} onClick={()=>{completeTask(record.id)}}/>
                 </>
             );
         },
@@ -87,20 +107,6 @@ const columns = [
         align: 'center'
     }
   ];
-
-const History = () =>{
-    const [taskData, setTaskData] = useState([]);
-    const [loading,setLoading] = useState(false);
-    const [users,setUsers] = useState([]);
-
-    const [tableParams, setTableParams] = useState({
-        pagination: {
-          current: 1,
-          pageSize: 10,
-        }
-    });
-
-    const task = new Task();
 
     useEffect(()=>{
         const fetch = async () =>{
@@ -129,7 +135,6 @@ const History = () =>{
         }
         callUser();
 
-
     },[JSON.stringify(tableParams)]);
 
     const tempTaskData = [...taskData];
@@ -143,14 +148,17 @@ const History = () =>{
         });
     });
 
-
     const handleTableChange = (pagination, filters, sorter) => {
         setTableParams({
           pagination,
           filters,
           ...sorter,
         });
-        if (pagination.pageSize !== tableParams.pagination?.pageSize) setData([]);
+        if (pagination.pageSize !== tableParams.pagination?.pageSize) setTaskData([]);
+    };
+
+    const defaultFooter = () =>{
+        return <span className="table__footer">{`Total: ${taskData.length}`}</span>
     };
 
     return (
@@ -163,7 +171,9 @@ const History = () =>{
                 pagination={tableParams.pagination}
                 dataSource={taskData}
                 rowClassName="table__row"
+                size="large"
                 onChange={handleTableChange}
+                footer={defaultFooter}
             />
 
         </div>

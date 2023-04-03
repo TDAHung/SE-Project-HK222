@@ -20,7 +20,15 @@ class Task {
 
     async deleteTask(id){
         try{
-            await Axios.delete(`${query}/${id}`);
+            await Axios.destroy(`${query}/${id}`);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async addTask(data){
+        try{
+            await Axios.add(`${query}`,data);
         }catch(error){
             console.log(error);
         }

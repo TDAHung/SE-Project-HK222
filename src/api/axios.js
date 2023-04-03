@@ -39,6 +39,10 @@ export const add = async (url, data) => {
     await Axios.post(url,data);
 }
 
+export const destroy = async (url) => {
+    await Axios.delete(url);
+}
+
 export const update = async (url,data) => {
     await Axios.put(url, data);
 }
