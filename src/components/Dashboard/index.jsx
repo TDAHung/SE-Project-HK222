@@ -83,7 +83,7 @@ const DashboardLayout = () => {
                                 display="flex"
                                 justifyContent="space-between"
                                 alignItems="center"
-                                ml="15px"
+                                ml="1.5rem"
                             >
                                 <Typography variant="h3" color="#FFFFFF">
                                     ADMIN
@@ -96,7 +96,7 @@ const DashboardLayout = () => {
                     </MenuItem>
 
                     {!isCollapsed && (
-                        <Box mb="25px">
+                        <Box mb="2.5rem">
                             <Box display="flex" justifyContent="center" alignItems="center">
                                 <img
                                     width="10rem"
