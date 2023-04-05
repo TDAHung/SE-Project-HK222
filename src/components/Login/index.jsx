@@ -30,7 +30,8 @@ const Login = () =>{
           data.forEach((user)=>{
             if(String(loginData.username) === String(user.username) 
             && String(loginData.password) === String(user.password)){
-              localStorage.setItem('user-id',user.id);
+              localStorage.setItem('user',JSON.stringify(user));
+              sessionStorage.setItem('onLogin','true');
               return;
             }
           });
@@ -102,7 +103,7 @@ const Login = () =>{
 
     return (
         <div className="login">
-          {localStorage.getItem('user-id') && <Navigate to={pages.DASHBOARD} replace={true}/>}
+          {sessionStorage.getItem('onLogin') && <Navigate to={pages.DASHBOARD} replace={true}/>}
             <div className='login__wrapper'>
                 <div className='login__wrapper__left'>
                     <div className="login__img">
