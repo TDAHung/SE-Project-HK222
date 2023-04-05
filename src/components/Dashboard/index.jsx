@@ -98,11 +98,9 @@ const DashboardLayout = () => {
                     {!isCollapsed && (
                         <Box mb="2.5rem">
                             <Box display="flex" justifyContent="center" alignItems="center">
-                                <img
-                                    width="10rem"
-                                    height="10rem"
+                                <img  
                                     src={avatarUrl}
-                                    style={{ cursor: "pointer", borderRadius: "50%"}}
+                                    style={{ cursor: "pointer", borderRadius: "50%", width: "6rem", height: "6rem"}}
                                 />
                             </Box>
 
