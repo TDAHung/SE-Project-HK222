@@ -22,27 +22,18 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import { PublicRoute, PrivateRoute } from './components/Route'
 
-const loadSpinner = () => {
-    return new Promise(resolve=>setTimeout(()=>resolve(), 2500));
-}
-
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(()=>{
-  //   setLoading(true);
-  //   setTimeout(()=>{
-  //     setLoading(false);
-  //   },5000);
-  // },[]);
+  useEffect(()=>{
+    setLoading(true);
+    setTimeout(()=>{
+      setLoading(false);
+    },2500);
+  },[]);
 
-  const componentDidMount = () =>{
-    loadSpinner().then(()=>{setLoading(false)});
-  }
-
-  componentDidMount();
 
   return (<ColorModeContext.Provider value={colorMode}>
     {loading ? <Loading/> :
