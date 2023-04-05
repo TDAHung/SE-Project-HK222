@@ -1,3 +1,3 @@
 # SE-Project-HK222
-# npm install
-# npm run dev
+# This is project of Software Engineer Semester 222
+# Welcome to UWC 2.0
