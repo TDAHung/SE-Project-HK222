@@ -1,8 +1,8 @@
 import * as Axios from "../../api/axios";
-const query = '/users';
+const query = '/tasks';
 
-class User {
-    async getUser(id,params={}) {
+class Task {
+    async getTask(id,params={}) {
         try{
             return await Axios.get(`${query}/${id}`,params);
         }catch(error){
@@ -10,7 +10,7 @@ class User {
         }
     };
 
-    async getAllUser(params={}){
+    async getAllTask(params={}){
         try{
             return await Axios.get(`${query}`,params);
         }catch(error){
@@ -18,21 +18,21 @@ class User {
         }
     }
 
-    async deleteUser(id){
+    async deleteTask(id){
         try{
-            await Axios.delete(`${query}/${id}`);
+            await Axios.destroy(`${query}/${id}`);
         }catch(error){
             console.log(error);
         }
     }
 
-    async updateUser(id,data){
+    async addTask(data){
         try{
-            await Axios.update(`/users/${id}`,data);
+            await Axios.add(`${query}`,data);
         }catch(error){
             console.log(error);
         }
     }
 };
 
-export default User;
+export default Task;
