@@ -16,7 +16,7 @@ const Assign = () =>{
 
     const columnsUser = [
     {
-        title: 'Unassigned',
+        title: <div className='assign__title'>Unassigned</div>,
         dataIndex: 'unassigned',
         key: 'unassigned',
         render: (_,record) => {
@@ -30,8 +30,38 @@ const Assign = () =>{
                     setModal(true);
                 }}>Assign</Button>
             </div>
-        }
+        },
+        align:'center'
     },
+    ];
+
+    const showDescriptionMCP = (record) =>{
+        setModalTask(true);
+        setJob("mcp");
+        setJobID(record.id);
+    }
+
+    const showDescriptionVehicle = (record) =>{
+        setModalTask(true);
+        setJob("vehicle");
+        setJobID(record.id);
+    }
+
+    const columnsTask = [
+        {
+            title: <div className="assign__title">MCP's</div>,
+            dataIndex: 'mcp',
+            key: 'mcp',
+            render: (_,record) => <Button name="mcp" onClick={()=>{showDescriptionMCP(record)}}>{record.mcp}</Button>,
+            align:'center',
+        },
+        {
+            title: <div className="assign__title">Vehicle</div>,
+            dataIndex: 'vehicle',
+            key: 'vehicle',
+            render: (_,record) => <Button name="vehicle" onClick={()=>{showDescriptionVehicle(record)}}>{record.vehicle}</Button>,
+            align:'center',
+        }
     ];
 
     const [taskData, setTaskData] = useState([]);
@@ -40,17 +70,26 @@ const Assign = () =>{
     const [loadingTask, setLoadingTask] = useState(true);
     const [assignUserId, setAssignUserId] = useState();
     const [modal,setModal] = useState(false);
+    const [modalTask,setModalTask] = useState(false);
+    const [job,setJob] = useState('mcp');
+    const [jobID,setJobID] = useState();
+    const [assignData,setAssignData] = useState({
+        id:'',
+        mcp: '',
+        vehicle: '',
+    }); 
+    const [role, setRole] = useState("collector");
 
     const [tableUserParams, setTableUserParams] = useState({
         pagination: {
           current: 1,
-          pageSize: 6,
+          pageSize: 7,
         }
     });
     const [tableTaskParams, setTableTaskParams] = useState({
         pagination: {
           current: 1,
-          pageSize: 6,
+          pageSize: 7,
         }
     });
 
@@ -80,8 +119,8 @@ const Assign = () =>{
             try{
                 const task = new Task();
                 const dataFetchTask = await task.getAllTask();
-                setUserData(dataFetchTask);
-                setTableUserParams({
+                setTaskData(dataFetchTask);
+                setTableTaskParams({
                     ...tableTaskParams,
                     pagination: {
                         ...tableTaskParams.pagination,
@@ -97,19 +136,78 @@ const Assign = () =>{
     },[JSON.stringify(tableTaskParams)]);
 
 
-    const handleTableChange = (pagination, filters, sorter) => {
+    const handleTableUserChange = (pagination, filters, sorter) => {
         setTableUserParams({
           pagination,
           filters,
           ...sorter,
         });
-        if (pagination.pageSize !== tableParams.pagination?.pageSize) setUserData([]);
+        if (pagination.pageSize !== tableUserParams.pagination?.pageSize) setUserData([]);
     };
 
-    const defaultFooter = (data) =>{
-        return <span className="table__footer">{`Total: ${data.length}`}</span>
+    const handleTableTaskChange = (pagination, filters, sorter) => {
+        setTableTaskParams({
+          pagination,
+          filters,
+          ...sorter,
+        });
+        if (pagination.pageSize !== tableTaskParams.pagination?.pageSize) setTaskData([]);
     };
 
+    // formItems elements data
+    const formItems = [
+        {
+            name: 'mcp',
+            label: 'MCP',
+        },
+        {
+            name: 'vehicle',
+            label: 'Vehicle',
+        }
+    ];
+
+    const onChangeAssign = event =>{
+        const name = event.target.name;
+        const value = event.target.value;
+        setAssignData(prev=>({
+            ...prev, [name]:value, id: assignUserId
+        }));
+    }
+
+    const renderForm = formItems.map(element=>{
+        const props = {
+            placeholder: `Enter your ${element.label} ID`,
+            className: "assign__input__field",
+            name: `${element.name}`
+        };
+        const rules = [{
+            whitespace: false,
+            required: true,
+            message: `${element.label} can not be empty`
+          }];
+
+        return (
+            <Form.Item key={element.name} className="login__input"
+            name={element.name} label={element.label}
+            rules={rules}
+          >
+            <Input {...props} onChange={event=>{onChangeAssign(event)}}/>
+          </Form.Item>
+        )
+    });
+
+    //call api to store
+    const onAssign = () =>{
+        setModal(false);
+    }
+
+    const onClickRole = () => {
+        if(role === 'collector') setRole('janitor');
+        else setRole('collector');
+    }
+
+    const footerUser = () => <span className="table__footer">Total: {userData.length}</span>
+    const footerTask = () => <span className="table__footer">Total: {taskData.length}</span>
 
     return (
         <div className="assign">
@@ -117,16 +215,11 @@ const Assign = () =>{
                 <div className="assign__header__title">Assign Task</div>
                 <div className="assign__option">
                     <div className="assign__week">Week 4</div>
-                    <div className="assign__role">Collector</div>
+                    <div className="assign__role" onClick={()=>{onClickRole()}}>{role === 'collector' ? 'Collector' : 'Janitor'}</div>
                 </div>
             </div>
             <div className="assign__table">
                 <div className="assign__user__unassigned">
-                    {/* <div className='unassigned__user__title'>Unassigned</div>
-                    <div className='line'></div>
-                    <div className="unassigned__user">
-                        
-                    </div> */}
                     <Table 
                         columns={columnsUser}
                         loading={loadingUser}
@@ -135,24 +228,62 @@ const Assign = () =>{
                         dataSource={userData}
                         rowClassName="table__row"
                         size="large"
-                        onChange={handleTableChange}
-                        footer={()=>{defaultFooter(userData)}}
+                        onChange={handleTableUserChange}
+                        footer={footerUser}
                     />
                         <Modal 
                         open={modal}
-                        onCancel={()=>{setModal(false)}}
-                        onOk={()=>{setModal(false)}}
+                        cancelText={null}
+                        closable={false}
+                        confirmLoading={true}
+                        footer={<div className='modal__footer'>
+                            <Button className="modal__cancel" onClick={()=>{setModal(false)}}>Cancel</Button>
+                            <Button className="modal__assign" onClick={()=>{onAssign()}}>Assign</Button>
+                        </div>}
                         className="modal"
-                        >
-                            <Form>
-                                
+                        >   
+                            <div className="modal__title">{`Assign for ID: ${assignUserId}`}</div>
+                            <div className='line'></div>
+                            <Form layout='vertical'>
+                                {renderForm}
                             </Form>
                         </Modal>
                 </div>
                 <div className="assign__task__unassigned">
-asdfasd
+                    <Table 
+                        columns={columnsTask}
+                        loading={loadingTask}
+                        rowKey={()=>{uuid()}}
+                        pagination={tableTaskParams.pagination}
+                        dataSource={taskData}
+                        rowClassName="table__row"
+                        size="large"
+                        onChange={handleTableTaskChange}
+                        footer={footerTask}
+                    />
                 </div>
             </div>
+            <Modal 
+                 open={modalTask}
+                 cancelText={null}
+                 closable={false}
+                 confirmLoading={true}
+                 footer={<div className='modal__footer'>
+                     <Button className="modal__cancel" onClick={()=>{setModalTask(false)}}>Cancel</Button>
+                 </div>}
+                 className="modal"
+            >
+                <div className="modal__task__id">{job === 'mcp' ? `MCP ID: ${jobID}`: `Vehicle ID: ${jobID}`}</div>
+                <div className="modal__task__description">
+                {
+                    job === 'mcp' ? <div>Address: TPHCM</div> : <div>
+                        <div>Weight</div>
+                        <div>Capacity</div>
+                        <div>Fuel Consumption</div>
+                    </div>
+                }
+                </div>
+            </Modal>
         </div>
     );
 };
