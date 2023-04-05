@@ -15,8 +15,6 @@ import { MenuOutlined } from "@mui/icons-material";
 import { pages } from "../../utils/constants";
 import Header from "../Header";
 
-import User from "../../controller/user/userController";
-
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -107,7 +105,7 @@ const DashboardLayout = () => {
                             <Box display="flex" justifyContent="center" alignItems="center">
                                 <img  
                                     src={userData.imgUrl}
-                                    style={{ cursor: "pointer", borderRadius: "50%", width: "6rem", height: "6rem"}}
+                                    style={{ cursor: "pointer", borderRadius: "50%", width: "20rem", height: "20rem"}}
                                 />
                             </Box>
 

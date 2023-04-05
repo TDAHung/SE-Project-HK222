@@ -14,6 +14,7 @@ const Header = () =>{
             <div className="option__item" onClick={()=>{
                 sessionStorage.removeItem('onLogin');
                 localStorage.removeItem('user');
+                window.location.reload(false);
                 }} >Logout</div>
         </div> 
     }

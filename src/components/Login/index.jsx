@@ -32,6 +32,7 @@ const Login = () =>{
             && String(loginData.password) === String(user.password)){
               localStorage.setItem('user',JSON.stringify(user));
               sessionStorage.setItem('onLogin','true');
+              window.location.reload(false);
               return;
             }
           });
