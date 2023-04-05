@@ -5,9 +5,39 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
+    <style>
+.spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+  
+.spinner .haft__spinner{
+    width: 8rem;
+    height: 8rem;
+    border: 0.3rem solid transparent;
+    border-bottom: 0.3rem solid #2E0C7E;
+    border-radius: 50%;
+    animation: spin 0.5s linear 0s infinite;
+}
+
+@keyframes spin {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <div className="spinner">
+      <div className="haft__spinner"></div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
