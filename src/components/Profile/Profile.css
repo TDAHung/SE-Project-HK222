@@ -1,0 +1,53 @@
+.popup {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.0rem;
+    /* center all divs */
+}
+
+.profile__img{
+    width: 30%;
+}
+
+.profile__img img{
+    border-radius: 50%;
+}
+.profile__img img:hover {
+    transform: scale(1.1);
+    border: 3px solid white;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease-in-out;
+}
+.profile__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    font-family: 'Poppins';
+}
+
+Form{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile__button{
+    background-color: #783EFD;
+    color: white;
+    font-family: 'Poppins';
+    width: 30%;
+    margin: 0 auto;
+}
+
+.profile__name, .profile__username, .profile__password{
+    color:#783EFD;
+    font-family: 'Poppins';
+}
