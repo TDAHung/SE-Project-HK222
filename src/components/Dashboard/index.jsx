@@ -16,7 +16,6 @@ import { pages } from "../../utils/constants";
 import Header from "../Header";
 
 import User from "../../controller/user/userController";
-import avatarUrl from "../../assets/images/splash.jpg";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -43,18 +42,11 @@ const DashboardLayout = () => {
     const [selected, setSelected] = useState('Dashboard');
 
     const [userData, setUserData] = useState({});
+
+    
     useEffect(()=>{
-        try{
-        const user = new User();
-        const id = localStorage.getItem('user-id');
-        const fetchAPI = async () =>{
-            const data = await user.getUser(id);
-            setUserData({...data});
-        }
-        fetchAPI();
-    }catch(error){
-        console.log(error);
-    }
+        const data =JSON.parse(localStorage.getItem('user'));
+        setUserData({...data});
     },[]);
 
     return (
