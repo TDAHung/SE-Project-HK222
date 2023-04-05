@@ -70,7 +70,10 @@ const columns = [
         dataIndex: 'mcp',
         sorter: true,
         width: '20%',
-        align: 'center'
+        align: 'center',
+        // render: (_,record)=>{
+        //     console.log(record);
+        // }
     },
     // {
     //     title: 'Troller',
