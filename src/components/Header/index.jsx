@@ -1,6 +1,14 @@
 import "./Header.css";
 import notify from "../../assets/images/notify.png";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+//import theme
+import { ColorModeContext, tokens } from "../Dashboard/theme";
+
+//import MUI lib
+import { Box, IconButton, useTheme } from "@mui/material";
+import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
 
 const Header = () =>{
     const [userData, setUserData] = useState({});
@@ -24,8 +32,25 @@ const Header = () =>{
         setUserData(user);    
     },[]);
 
+    const theme = useTheme();
+    const colors = tokens(theme.palette.mode);
+    const colorMode = useContext(ColorModeContext);
+
     return  <div className="header">
             <div className="header__info">
+            <IconButton     
+                style={{
+                    color: colors.grey[900],
+                    marginRight: "1.5rem",
+                    fontSize: "600"
+                }}
+                onClick={colorMode.toggleColorMode}>
+                {theme.palette.mode === 'dark' ? (
+                    <DarkModeOutlined />
+                ) : (
+                    <LightModeOutlined />
+                )}
+            </IconButton>
             <div className="notify__img"><img src={notify} alt="notify" /></div>
             <div className="user__info">
                 <div className="user__name">{userData.name}</div>
