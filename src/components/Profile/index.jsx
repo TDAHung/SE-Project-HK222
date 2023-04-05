@@ -16,18 +16,10 @@ const Profile = () => {
     const [isSuccess,setIsSuccess] = useState(false);
 
     const user = new User();
-    const id = localStorage.getItem('user-id');
 
     useEffect(()=>{
-        const fetch = async () =>{
-            try{
-                const data = await user.getUser(id);
-                setUserData({...data});
-            }catch(error){
-                console.log(error);
-            }
-        }
-        fetch();
+        const data =JSON.parse(localStorage.getItem('user'));
+        setUserData({...data});
     },[]);
 
     const getCurrentDate = (separator='-') => {

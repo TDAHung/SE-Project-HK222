@@ -16,7 +16,6 @@ import { pages } from "../../utils/constants";
 import Header from "../Header";
 
 import User from "../../controller/user/userController";
-import avatarUrl from "../../assets/images/splash.jpg";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -43,23 +42,16 @@ const DashboardLayout = () => {
     const [selected, setSelected] = useState('Dashboard');
 
     const [userData, setUserData] = useState({});
+
+    
     useEffect(()=>{
-        try{
-        const user = new User();
-        const id = localStorage.getItem('user-id');
-        const fetchAPI = async () =>{
-            const data = await user.getUser(id);
-            setUserData({...data});
-        }
-        fetchAPI();
-    }catch(error){
-        console.log(error);
-    }
+        const data =JSON.parse(localStorage.getItem('user'));
+        setUserData({...data});
     },[]);
 
     return (
         <div className="dashboard">
-        {!localStorage.getItem('user-id') && <Navigate to={pages.LOGIN} replace={true}/>}
+        {!sessionStorage.getItem('onLogin') && <Navigate to={pages.LOGIN} replace={true}/>}
         <Header />
         <Box
             className="dashboard__sidebar"
@@ -72,7 +64,7 @@ const DashboardLayout = () => {
                     backgroundColor: "transparent !important",
                 },
                 "& .pro-inner-item": {
-                    padding: "5px 35px 5px 20px !important",
+                    padding: "0.5rem 3.5rem 0.5rem 2rem !important",
                 },
                 "& .pro-inner-item:hover": {
                     color: "#00d2d3 !important",
@@ -90,7 +82,7 @@ const DashboardLayout = () => {
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         icon={isCollapsed ? <MenuOutlined /> : undefined}
                         style={{
-                            margin: "10px 0 20px 0",
+                            margin: "1rem 0 2rem 0",
                             color: "#FFF",
                         }}
                     >
@@ -99,7 +91,7 @@ const DashboardLayout = () => {
                                 display="flex"
                                 justifyContent="space-between"
                                 alignItems="center"
-                                ml="15px"
+                                ml="1.5rem"
                             >
                                 <Typography variant="h3" color="#FFFFFF">
                                     ADMIN
@@ -112,18 +104,16 @@ const DashboardLayout = () => {
                     </MenuItem>
 
                     {!isCollapsed && (
-                        <Box mb="25px">
+                        <Box mb="2.5rem">
                             <Box display="flex" justifyContent="center" alignItems="center">
-                                <img
-                                    width="100px"
-                                    height="100px"
+                                <img  
                                     src={userData.imgUrl}
-                                    style={{ cursor: "pointer", borderRadius: "50%"}}
+                                    style={{ cursor: "pointer", borderRadius: "50%", width: "6rem", height: "6rem"}}
                                 />
                             </Box>
 
                             <Box textAlign="center">
-                                <Typography variant="h2" fontWeight="bold" sx={{ m: "10px 0 0 0" }} color={colors.grey[100]}>{userData.name}</Typography>
+                                <Typography variant="h2" fontWeight="bold" sx={{ m: "1rem 0 0 0" }} color={colors.grey[100]}>{userData.name}</Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>Leader</Typography>
                             </Box>
                         </Box>
@@ -133,7 +123,7 @@ const DashboardLayout = () => {
                         <Typography
                             variant={isCollapsed ? "h4" : "h3"}
                             color="#FFFFFF"
-                            sx={!isCollapsed ? {m: "15px 0 5px 20px"}:{m:"15px 0 0 10px"}}
+                            sx={!isCollapsed ? {m: "1.5rem 0 0.5rem 2rem"}:{m:"1.5rem 0 0 1rem"}}
                         >
                             MAIN MENU
                         </Typography>
@@ -161,7 +151,7 @@ const DashboardLayout = () => {
                         <Typography
                             variant={isCollapsed ? "h4" : "h3"}
                             color="#FFFFFF"
-                            sx={!isCollapsed ? {m: "15px 0 5px 20px"}:{m:"15px 0 0 3px"}}
+                            sx={!isCollapsed ? {m: "1.5rem 0 0.5rem 2rem"}:{m:"1.5rem 0 0 0.3rem"}}
                         >
                             OTHERS
                         </Typography>
