@@ -15,8 +15,6 @@ import { MenuOutlined } from "@mui/icons-material";
 import { pages } from "../../utils/constants";
 import Header from "../Header";
 
-import User from "../../controller/user/userController";
-
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
