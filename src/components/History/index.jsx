@@ -69,32 +69,32 @@ const columns = [
         title: 'MCP',
         dataIndex: 'mcp',
         sorter: true,
-        width: '10%',
+        width: '20%',
         align: 'center'
     },
-    {
-        title: 'Troller',
-        dataIndex: 'troller',
-        sorter: true,
-        width: '10%',
-        align: 'center'
-    },
-    {
-        title: 'Route',
-        dataIndex: 'route',
-        sorter: true,
-        width: '10%',
-        align: 'center'
-    },
+    // {
+    //     title: 'Troller',
+    //     dataIndex: 'troller',
+    //     sorter: true,
+    //     width: '10%',
+    //     align: 'center'
+    // },
+    // {
+    //     title: 'Route',
+    //     dataIndex: 'route',
+    //     sorter: true,
+    //     width: '10%',
+    //     align: 'center'
+    // },
     {
         title: 'Vehicle',
         dataIndex: 'vehicle',
         sorter: true,
-        width: '10%',
+        width: '20%',
         align: 'center'
     },
     {
-        title: 'Actions',
+        title: 'Status',
         dataIndex: 'action',
         render: (_,record)=>{
             return(
