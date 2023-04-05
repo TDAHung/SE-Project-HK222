@@ -1,0 +1,69 @@
+.assign{
+    padding-left: 5rem;
+    padding-top: 8rem;
+    width: 70%;
+}
+
+.assign__header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+}
+
+.assign__header__title{
+    font-family: Montserrat;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.016em;
+    color :#000000;
+}
+
+.assign__option{
+    background-color: #2E0C7E;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem 0 4rem;
+    width: 50%;
+    color: #EFF0F4;
+    border-radius: 9rem;
+}
+
+.assign__week, .assign__role{
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.assign__table{
+    display: flex;
+    justify-content: space-between;
+    height: 80%;
+}
+
+.assign__user__unassigned{
+    background: #F7F8FA;
+    width: 40%;
+}
+
+.unassigned__user__title{
+    color: #FDA20E;
+    font-family: 'Montserrat';
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
+.line{
+    background-color: #727373;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.35);
+    height: 0.05rem;
+}
+
+.assign__button{
+    cursor: pointer;
+}
