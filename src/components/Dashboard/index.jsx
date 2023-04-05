@@ -51,7 +51,6 @@ const DashboardLayout = () => {
 
     return (
         <div className="dashboard">
-        {!sessionStorage.getItem('onLogin') && <Navigate to={pages.LOGIN} replace={true}/>}
         <Header />
         <Box
             className="dashboard__sidebar"

@@ -103,7 +103,6 @@ const Login = () =>{
 
     return (
         <div className="login">
-          {sessionStorage.getItem('onLogin') && <Navigate to={pages.DASHBOARD} replace={true}/>}
             <div className='login__wrapper'>
                 <div className='login__wrapper__left'>
                     <div className="login__img">

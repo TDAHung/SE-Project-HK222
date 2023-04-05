@@ -11,7 +11,10 @@ const Header = () =>{
         return <div className="options__panel">
             <div className="option__item" >Help</div>
             <div className="option__item" >Language: EN 🇺🇸</div>
-            <div className="option__item" onClick={()=>{sessionStorage.removeItem('onLogin')}} >Logout</div>
+            <div className="option__item" onClick={()=>{
+                sessionStorage.removeItem('onLogin');
+                localStorage.removeItem('user');
+                }} >Logout</div>
         </div> 
     }
 

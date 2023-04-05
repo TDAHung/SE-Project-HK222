@@ -18,8 +18,8 @@ import Chat from './components/Chat'
 
 //import style
 import './App.css'
-import { Theme } from '@ant-design/cssinjs'
 import { useState } from 'react'
+import { PublicRoute, PrivateRoute } from './components/Route'
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -31,8 +31,9 @@ function App() {
     <div className='app'>
       <main className='content'>
         <Routes>
-          <Route path={pages.LOGIN} element={<Login/>} />
-          <Route path={pages.DASHBOARD} element={<DashboardLayout isSidebar={isSidebar}/>}>
+          <Route path={pages.LOGIN} element={<PublicRoute><Login/></PublicRoute>} 
+          />
+          <Route path={pages.DASHBOARD} element={<PrivateRoute><DashboardLayout isSidebar={isSidebar}/></PrivateRoute>}>
             <Route path={pages.ASSIGN} element={<Assign />} /> 
             <Route path={pages.HISTORY} element={<History />}/>
             <Route path={pages.CHAT} element={<Chat />}/>
