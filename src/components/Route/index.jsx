@@ -5,12 +5,12 @@ import { pages } from "../../utils/constants";
 
 export const PrivateRoute = ({children}) =>{  
     const authenticated = sessionStorage.getItem('onLogin');
-    if(!authenticated) return <Navigate to={pages.LOGIN} />
+    if(!authenticated) return <Navigate to={pages.LOGIN} replace />
     return children;
 }
 
 export const PublicRoute = ({children}) => {
     const authenticated = sessionStorage.getItem('onLogin');
-    if(authenticated) return <Navigate to={pages.DASHBOARD} />
+    if(authenticated) return <Navigate to={pages.DASHBOARD} replace />
     return children;
 }
