@@ -36,49 +36,22 @@
     cursor: pointer;
 }
 
+.table__row{
+    height: 7rem;
+}
+
 .assign__table{
     display: flex;
     justify-content: space-between;
     height: 80%;
 }
 
-.assign__user__unassigned{
-    background: #F7F8FA;
-    width: 40%;
-    border-radius: 2rem;
-}
-
-.assign__task__unassigned{
-    background: #F7F8FA;
-    width: 40%;
-    border-radius: 2rem;
-}
 
 .assign__title{
     font-family: 'Montserrat';
     font-size: 1.5rem;
     font-weight: 700;
     color:#FDA20E;
-}
-
-.table__user{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 2rem 0 2rem;
-}
-
-.table__user__info{
-    display: flex;
-    align-items: center;
-}
-
-.assign__input__field{
-    font-family: 'Poppins';
-    font-weight: 600;
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    color: #343C44;
 }
 
 .line{
@@ -106,4 +79,5 @@
     color: white;
     font-family: 'Poppins';
     font-weight: 300;
+    margin-left: 1rem;
 }
