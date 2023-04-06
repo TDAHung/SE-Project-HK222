@@ -19,44 +19,43 @@ import { pages } from '../../utils/constants';
 
 const Login = () =>{
     const [loginError, setLoginError] = useState('');
-    const [canSubmit, setCanSubmit] = useState(true);
+    const [canSubmit, setCanSubmit] = useState(false);
     const [loginData, setLoginData] = useState({});
-
+    const [userData,setUserData] = useState([]);
+    const [correctUser, setCorrectUser] = useState(false);
     const user = new User();
 
     useEffect(()=>{
         const fetch = async () =>{
           const data = await user.getAllUser();
-          data.forEach((user)=>{
-            if(String(loginData.username) === String(user.username) 
-            && String(loginData.password) === String(user.password)){
-              localStorage.setItem('user',JSON.stringify(user));
-              sessionStorage.setItem('onLogin','true');
-              window.location.reload(false);
-              return;
-            }
-          });
+          setUserData(data);
         }
         fetch();
-    },[loginData]);
+    },[]);
 
-      // Check password regex in rules if there is any
+  // Check password regex in rules if there is any
   const onLogin = (event) => {
     if (canSubmit) {
       try {
-        setCanSubmit(false)
-        setLoginData({...event});
+        userData.every((user)=>{
+          if(String(event.username) === String(user.username) 
+          && String(event.password) === String(user.password)){
+            localStorage.setItem('user',JSON.stringify(user));
+            sessionStorage.setItem('onLogin','true');
+            setLoginError();
+            window.location.reload(false);
+            return;
+          }else setLoginError("Wrong Username or Password");
+        });
       } catch (err) {
-        setLoginError(err.response.data.message)
-      } finally {
-        setCanSubmit(true)
+        setLoginError(err.response.data.message);
       }
     }
-    return;
   }
   // reset Error when input change
   const onFieldChange = () => {
     setLoginError('');
+    setCanSubmit(true);
   }
       // formItems elements data
     const formItems = [
@@ -118,9 +117,10 @@ const Login = () =>{
                             onFinish={(event)=>{onLogin(event)}}
                             onFieldsChange={onFieldChange}>
                             {renderedFormItem}
+                            {loginError && <div className="login__error">{loginError}</div>}
                             <Button disabled={!canSubmit} htmlType='submit' className="login__btn">Login</Button>
                             </Form>
-                        {loginError && <div className="login__error">{loginError}</div>}
+
                     </div>
                 </div>
             </div>

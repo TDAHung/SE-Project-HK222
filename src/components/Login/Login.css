@@ -16,6 +16,10 @@
     width: 65%;
 }
 
+.login__input__field{
+    font-family: 'Poppins';
+}
+
 .login__img{
     width: 15%;
 }
@@ -36,6 +40,14 @@
     font-weight: 700;
     font-size: 5rem;
     margin-bottom: 5rem;
+}
+
+.login__error{
+    width: 100%;
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: 500;
+    color: red;
 }
 
 .login__btn{
