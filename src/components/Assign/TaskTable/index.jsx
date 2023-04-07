@@ -16,7 +16,7 @@ import "../Assign.css";
 
 
 
-const TaskTable = () => {
+const TaskTable = ({date}) => {
     const [taskData, setTaskData] = useState([]);
     const [loadingTask, setLoadingTask] = useState(true);
     const [modalTask,setModalTask] = useState(false);
@@ -114,13 +114,15 @@ const TaskTable = () => {
             </div>}
             className="modal"
         >
-            <div className="modal__task__id">{job === 'mcp' ? `MCP ID: ${jobID}`: `Vehicle ID: ${jobID}`}</div>
+            <div className="modal__title">{job === 'mcp' ? "MCP" : "Vehicle"}</div>
+            <div className='line'></div>
+            <div className="modal__task">{job === 'mcp' ? `ID: ${jobID}`: `ID: ${jobID}`}</div>
             <div className="modal__task__description">
             {
-                job === 'mcp' ? <div>Address: TPHCM</div> : <div>
-                <div>Weight</div>
-                <div>Capacity</div>
-                <div>Fuel Consumption</div>
+                job === 'mcp' ? <div className="modal__task">Address: TPHCM</div> : <div>
+                <div className="modal__task">Weight(Tons): 140</div>
+                <div className="modal__task">Capacity(Tons): 5</div>
+                <div className="modal__task">Fuel Consumption(Litre): 10</div>
                 </div>
             }
                 </div>

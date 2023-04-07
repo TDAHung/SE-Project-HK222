@@ -29,11 +29,19 @@
     border-radius: 9rem;
 }
 
+.assign__role{
+    cursor: pointer;
+}
+
 .assign__week, .assign__role{
-    font-family: 'Montserrat';
+    font-family: 'Poppins';
     font-weight: 500;
     font-size: 1.5rem;
-    cursor: pointer;
+}
+
+.assign__week_img, .assign__week{
+    display: flex;
+    align-self: center;
 }
 
 .table__row{

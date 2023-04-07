@@ -7,3 +7,12 @@
 .table__row{
     height: 7rem;
 }
+
+.modal__task{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    color: #343C44;
+}
