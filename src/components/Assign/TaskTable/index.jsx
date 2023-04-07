@@ -77,14 +77,14 @@ const TaskTable = ({date}) => {
             title: <div className="assign__title">MCP's</div>,
             dataIndex: 'mcp',
             key: 'mcp',
-            render: (_,record) => <Button name="mcp" className="button__mcp" onClick={()=>{showDescriptionMCP(record)}}>{record.mcp}</Button>,
+            render: (_,record) => <Button name="mcp" className="assign__button" onClick={()=>{showDescriptionMCP(record)}}>{record.mcp}</Button>,
             align:'center',
         },
         {
             title: <div className="assign__title">Vehicle</div>,
             dataIndex: 'vehicle',
             key: 'vehicle',
-            render: (_,record) => <Button name="vehicle" className="button__vehicle" onClick={()=>{showDescriptionVehicle(record)}}>{record.vehicle}</Button>,
+            render: (_,record) => <Button name="vehicle" className="assign__button" onClick={()=>{showDescriptionVehicle(record)}}>{record.vehicle}</Button>,
             align:'center',
         }
     ];
