@@ -34,7 +34,9 @@ const Profile = () => {
 
     const onEdit = async () => {
         if(isEdit){
-            await user.updateUser(id,userData);
+            await user.updateUser(userData.id,userData);
+            const updatedUser = await user.getUser(userData.id);
+            localStorage.setItem('user',JSON.stringify(updatedUser));
             setIsSuccess(true);
             setIsEdit(false);
         }else{

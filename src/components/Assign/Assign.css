@@ -1,0 +1,91 @@
+.assign{
+    padding-left: 5rem;
+    padding-top: 8rem;
+    width: 70%;
+}
+
+.assign__header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+}
+
+.assign__header__title{
+    font-family: Montserrat;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.016em;
+    color :#000000;
+}
+
+.assign__option{
+    background-color: #2E0C7E;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem 0 4rem;
+    width: 50%;
+    color: #EFF0F4;
+    border-radius: 9rem;
+}
+
+.assign__role{
+    cursor: pointer;
+}
+
+.assign__week, .assign__role{
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.assign__week_img, .assign__week{
+    display: flex;
+    align-self: center;
+}
+
+.table__row{
+    height: 7rem;
+}
+
+.assign__table{
+    display: flex;
+    justify-content: space-between;
+    height: 80%;
+}
+
+
+.assign__title{
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    font-weight: 700;
+    color:#FDA20E;
+}
+
+.line{
+    background-color: #D6E4EC;
+    height: 0.1rem;
+    margin: 2rem 0;
+}
+
+.modal__title{
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: #00140E;
+}
+
+.modal__cancel{
+    background-color: #2E0C7E;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 300;
+}
+
+.modal__assign{
+    background-color: #FDA20E;
+    color: white;
+    font-family: 'Poppins';
+    font-weight: 300;
+    margin-left: 1rem;
+}
