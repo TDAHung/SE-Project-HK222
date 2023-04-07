@@ -1,17 +1,24 @@
+//import libs
 import { Outlet, Navigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import "react-pro-sidebar/dist/css/styles.css";
 import "./dashboard.css"
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
+
+//import theme
 import { tokens } from "./theme";
-//import { HomeOutlined } from "@mui/icons-material";
+
+//import Icon from MUI lib
+import ScheduleIcon from '@mui/icons-material/Schedule';
+import MapIcon from '@mui/icons-material/Map';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import HistoryIcon from '@mui/icons-material/History';
 import ChatIcon from '@mui/icons-material/Chat';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';//profile
 import SettingsIcon from '@mui/icons-material/Settings';
 import { MenuOutlined } from "@mui/icons-material";
+
 import { pages } from "../../utils/constants";
 import Header from "../Header";
 
@@ -141,6 +148,20 @@ const DashboardLayout = () => {
                             title="Chat"
                             to={pages.CHAT}
                             icon={<ChatIcon/>}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Maps"
+                            //to={pages.CHAT}
+                            icon={<MapIcon/>}
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Schedule"
+                            //to={pages.CHAT}
+                            icon={<ScheduleIcon/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
