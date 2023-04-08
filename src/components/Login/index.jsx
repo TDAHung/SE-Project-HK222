@@ -37,16 +37,16 @@ const Login = () =>{
   const onLogin = (event) => {
     if (canSubmit) {
       try {
-        userData.every((user)=>{
+        for (const user of userData) {
           if(String(event.username) === String(user.username) 
           && String(event.password) === String(user.password)){
             localStorage.setItem('user',JSON.stringify(user));
             sessionStorage.setItem('onLogin','true');
             setLoginError();
             window.location.reload(false);
-            return;
+            break;
           }else setLoginError("Wrong Username or Password");
-        });
+        }
       } catch (err) {
         setLoginError(err.response.data.message);
       }

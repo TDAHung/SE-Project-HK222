@@ -20,7 +20,7 @@ import Loading from './components/Loading'
 //import style
 import './App.css'
 import { useState, useEffect } from 'react'
-import { PublicRoute, PrivateRoute } from './components/Route'
+import { PublicRoute, PrivateRoute, AdminRoute } from './components/Route'
 import Test from './components/Test'
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
           <Route path={pages.LOGIN} element={<PublicRoute><Login/></PublicRoute>} 
           />
           <Route path={pages.DASHBOARD} element={<PrivateRoute><DashboardLayout isSidebar={isSidebar}/></PrivateRoute>}>
-            <Route path={pages.TEST} element={<Test />} />
+            <Route path={pages.TEST} element={<AdminRoute><Test /></AdminRoute>} />
             <Route path={pages.ASSIGN} element={<Assign />} /> 
             <Route path={pages.HISTORY} element={<History />}/>
             <Route path={pages.CHAT} element={<Chat />}/>
