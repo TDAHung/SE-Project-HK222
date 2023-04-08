@@ -34,8 +34,8 @@ const History = () =>{
     
 const columns = [
     {
-        title: 'Week',
-        dataIndex: 'week',
+        title: 'Date',
+        dataIndex: 'date',
         sorter: true,
         width: '5%',
         align: 'center'
