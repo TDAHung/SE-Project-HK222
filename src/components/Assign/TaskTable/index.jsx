@@ -25,7 +25,7 @@ const TaskTable = ({date}) => {
     const [tableTaskParams, setTableTaskParams] = useState({
         pagination: {
           current: 1,
-          pageSize: 7,
+          pageSize: 6,
         }
     });
 

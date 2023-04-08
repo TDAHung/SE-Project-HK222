@@ -1,5 +1,5 @@
 //import lib
-import { Table } from "antd";
+import { Button, Modal, Table } from "antd";
 import { useEffect, useState } from "react";
 import { CheckOutlined } from "@ant-design/icons";
 import uuid from "react-uuid";
@@ -16,6 +16,9 @@ const History = () =>{
     const [taskData, setTaskData] = useState([]);
     const [loading,setLoading] = useState(false);
     const [users,setUsers] = useState([]);
+    const [modal,setModal] = useState(false);
+    const [job, setJob] = useState("mcp");
+    const [jobID,setJobID] = useState();
 
     const [tableParams, setTableParams] = useState({
         pagination: {
@@ -53,12 +56,12 @@ const columns = [
         sorter: true,
         render:(_,record)=>{
             if(record.user){
-                return <div className="table__user">
-                    <div className="table__user__img"><img src={record.user.imgUrl??logo} alt="userimgUrl"/></div>
-                    <div className="table__user__name">{record.user.name??"Anonymous"}</div>
+                return <div className="table__user__row">
+                    <div className="table__user__img"><img src={record.user.imgUrl} alt="userimgUrl"/></div>
+                    <div className="table__user__name">{record.user.name}</div>
                 </div>
             }else{
-                return <div className="table__user">
+                return <div className="table__user__row">
                     <div className="table__user__img"><img src={logo} alt="userimgUrl"/></div>
                     <div className="table__user__name">Anonymous</div>
                 </div>
@@ -66,35 +69,39 @@ const columns = [
         }
     },
     {
-        title: 'MCP',
-        dataIndex: 'mcp',
+        title: 'Task Name',
+        dataIndex: 'name',
         sorter: true,
         width: '20%',
         align: 'center',
-        // render: (_,record)=>{
-        //     console.log(record);
-        // }
     },
-    // {
-    //     title: 'Troller',
-    //     dataIndex: 'troller',
-    //     sorter: true,
-    //     width: '10%',
-    //     align: 'center'
-    // },
-    // {
-    //     title: 'Route',
-    //     dataIndex: 'route',
-    //     sorter: true,
-    //     width: '10%',
-    //     align: 'center'
-    // },
+    {
+        title: 'MCP',
+        dataIndex: 'mcp',
+        sorter: true,
+        width: '10%',
+        align: 'center',
+        render: (record) => {
+            return <Button className="button_modal" onClick={()=>{
+                setModal(true); 
+                setJob(record);
+                setJobID(record);
+            }}>{record}</Button>
+        },
+    },
     {
         title: 'Vehicle',
         dataIndex: 'vehicle',
         sorter: true,
-        width: '20%',
-        align: 'center'
+        width: '10%',
+        align: 'center',
+        render: (record) => {
+            return <Button className="button_modal" onClick={()=>{
+                setModal(true); 
+                setJob(record);
+                setJobID(record);
+            }}>{record}</Button>
+        },
     },
     {
         title: 'Status',
@@ -164,9 +171,11 @@ const columns = [
         return <span className="table__footer">{`Total: ${taskData.length}`}</span>
     };
 
+
     return (
         <div className="table">
             <div className="table__title">History</div>
+            <div className="table__content">
             <Table 
                 columns={columns}
                 loading={loading}
@@ -178,7 +187,27 @@ const columns = [
                 onChange={handleTableChange}
                 footer={defaultFooter}
             />
-
+            </div>
+            <Modal
+                open={modal}
+                onCancel={()=>{setModal(false)}}
+                footer={<div className='modal__footer'>
+                <Button className="modal__cancel" onClick={()=>{setModal(false)}}>Cancel</Button>
+            </div>}
+            >
+            <div className="modal__title">{job === 'mcp' ? "MCP" : "Vehicle"}</div>
+            <div className='line'></div>
+            <div className="modal__task">{job === 'mcp' ? `ID: ${jobID}`: `ID: ${jobID}`}</div>
+            <div className="modal__task__description">
+            {
+                job === 'mcp' ? <div className="modal__task">Address: TPHCM</div> : <div>
+                <div className="modal__task">Weight(Tons): 140</div>
+                <div className="modal__task">Capacity(Tons): 5</div>
+                <div className="modal__task">Fuel Consumption(Litre): 10</div>
+                </div>
+            }
+            </div>
+            </Modal>
         </div>
     );
 };
