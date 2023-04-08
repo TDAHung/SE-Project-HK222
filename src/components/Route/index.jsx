@@ -14,3 +14,9 @@ export const PublicRoute = ({children}) => {
     if(authenticated) return <Navigate to={pages.DASHBOARD} replace />
     return children;
 }
+
+export const AdminRoute = ({children}) => {
+    const authenticatedRole = JSON.parse(localStorage.getItem("user")).role;
+    if(authenticatedRole === 'admin') return children;
+    return <Navigate to="/" />
+}

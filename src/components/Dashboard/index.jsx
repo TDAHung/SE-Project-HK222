@@ -19,8 +19,12 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';//profile
 import SettingsIcon from '@mui/icons-material/Settings';
 import { MenuOutlined } from "@mui/icons-material";
 
+//import constant
 import { pages } from "../../utils/constants";
+
+//import style
 import Header from "../Header";
+import logo from "../../assets//images/Logo.jpg";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -97,7 +101,7 @@ const DashboardLayout = () => {
                                 ml="1.5rem"
                             >
                                 <Typography variant="h3" color="#FFFFFF">
-                                    ADMIN
+                                    {String(userData.role).toUpperCase()}
                                 </Typography>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlined/>
@@ -110,14 +114,14 @@ const DashboardLayout = () => {
                         <Box mb="2.5rem">
                             <Box display="flex" justifyContent="center" alignItems="center">
                                 <img  
-                                    src={userData.imgUrl}
+                                    src={logo}
                                     style={{ cursor: "pointer", borderRadius: "50%", width: "20rem", height: "20rem"}}
                                 />
                             </Box>
 
                             <Box textAlign="center">
                                 <Typography variant="h2" fontWeight="bold" sx={{ m: "1rem 0 0 0" }} color={colors.grey[100]}>{userData.name}</Typography>
-                                <Typography variant="h5" color={colors.greenAccent[500]}>Leader</Typography>
+                                <Typography variant="h5" color={colors.greenAccent[500]}>{userData.role}</Typography>
                             </Box>
                         </Box>
                     )}

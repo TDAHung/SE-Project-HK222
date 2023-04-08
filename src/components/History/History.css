@@ -1,5 +1,5 @@
 .table{
-    width: 60%;
+    width: 100%;
     padding-left: 5rem;
     padding-top: 8rem;
 }
@@ -11,6 +11,11 @@
     margin-bottom: 2rem;
     color: #000000;
 }
+
+.table__content{
+    width: 80vw;
+} 
+
 .table__row{
     font-family: 'Poppins';
     font-weight: 500;
@@ -18,14 +23,16 @@
     height: 5%;
 }
 
-.table__user{
+.table__user__row{
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .table__user__img{
-    width: 15%;
+    width: 5rem;
     margin-right: 2rem;
+    padding-left: 0;
 }
 
 .table__user__img img{
@@ -38,4 +45,11 @@
     font-weight: 500;
     font-size: 1.6rem;
     padding-left: 4rem;
+}
+
+.button_modal{
+    background-color: #FDA20E;
+    color:white;
+    font-family: 'Poppins';
+    font-weight: 400;
 }

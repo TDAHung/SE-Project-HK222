@@ -26,7 +26,7 @@ const UserTable = ({role}) => {
     const [tableUserParams, setTableUserParams] = useState({
         pagination: {
           current: 1,
-          pageSize: 7,
+          pageSize: 6,
         }
     });
     const [assignData,setAssignData] = useState({...objectAssign}); 

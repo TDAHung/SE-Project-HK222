@@ -4,10 +4,6 @@
     border-radius: 2rem;
 }
 
-.table__row{
-    height: 7rem;
-}
-
 .modal__task{
     font-family: 'Poppins';
     font-weight: 600;

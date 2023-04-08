@@ -33,6 +33,14 @@ class Task {
             console.log(error);
         }
     }
+
+    async updateTask(id,data){
+        try{
+            await Axios.update(`${query}/${id}`,data);
+        }catch(error){
+            console.log(error);
+        }
+    }
 };
 
 export default Task;

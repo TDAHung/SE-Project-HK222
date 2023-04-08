@@ -28,7 +28,7 @@ class User {
 
     async updateUser(id,data){
         try{
-            await Axios.update(`/users/${id}`,data);
+            await Axios.update(`${query}/${id}`,data);
         }catch(error){
             console.log(error);
         }
