@@ -37,10 +37,10 @@ const History = () =>{
     
 const columns = [
     {
-        title: 'Date',
+        title: 'Deadline',
         dataIndex: 'date',
         sorter: true,
-        width: '5%',
+        width: '10%',
         align: 'center'
     },
     {
