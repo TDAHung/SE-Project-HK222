@@ -5,7 +5,7 @@
 import { Table } from 'antd';
 import { useEffect, useState } from "react";
 import uuid from 'react-uuid';
-import { Button, Modal } from 'antd'
+import { Button, Modal } from 'antd' 
 
 //import Controller
 import Task from '../../../controller/task/taskController';
@@ -13,11 +13,14 @@ import Task from '../../../controller/task/taskController';
 //import style
 import "./TaskTable.css";
 import "../Assign.css";
-
-
+import gas from "../../../assets/images/gas-pump-solid.png";
+import weight from "../../../assets/images/weight-scale-solid.png";
+import strength from "../../../assets/images/hand-fist-solid.png"
+import location from "../../../assets/images/location-crosshairs-solid.png";
 
 const TaskTable = ({date}) => {
     const [taskData, setTaskData] = useState([]);
+    const [dataFetch, setDataFetch] = useState([]);
     const [loadingTask, setLoadingTask] = useState(true);
     const [modalTask,setModalTask] = useState(false);
     const [job,setJob] = useState('mcp');
@@ -34,7 +37,7 @@ const TaskTable = ({date}) => {
             try{
                 const task = new Task();
                 const dataFetchTask = await task.getAllTask();
-                setTaskData(dataFetchTask);
+                setDataFetch(dataFetchTask);
                 setTableTaskParams({
                     ...tableTaskParams,
                     pagination: {
@@ -49,6 +52,14 @@ const TaskTable = ({date}) => {
         } 
         fetch();
     },[JSON.stringify(tableTaskParams)]);
+
+    useEffect(()=>{
+        const dataAfterFilter = dataFetch.filter(element=>{
+            const month = String(element.date).substring(String(element.date).indexOf('-')+1,String(element.date).lastIndexOf('-'));
+            return Number(month) === Number(date);
+        });
+        setTaskData(dataAfterFilter);
+    },[date]);
 
     const showDescriptionMCP = (record) =>{
         setModalTask(true);
@@ -119,10 +130,21 @@ const TaskTable = ({date}) => {
             <div className="modal__task">{job === 'mcp' ? `ID: ${jobID}`: `ID: ${jobID}`}</div>
             <div className="modal__task__description">
             {
-                job === 'mcp' ? <div className="modal__task">Address: TPHCM</div> : <div>
-                <div className="modal__task">Weight(Tons): 140</div>
-                <div className="modal__task">Capacity(Tons): 5</div>
-                <div className="modal__task">Fuel Consumption(Litre): 10</div>
+                job === 'mcp' ? <div className="modal__task">
+                    <img src={location} alt="" />
+                    Address: TPHCM
+                </div> : <div>
+                <div className="modal__task">
+                    <img src={weight} alt="" />
+                    Weight(Tons): 140
+                </div>
+                <div className="modal__task">
+                    <img src={strength} alt="" />
+                    Capacity(Tons): 5
+                </div>
+                <div className="modal__task">
+                    <img src={gas} alt="" />
+                    Fuel Consumption(Litre): 10</div>
                 </div>
             }
                 </div>

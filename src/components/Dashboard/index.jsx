@@ -157,14 +157,14 @@ const DashboardLayout = () => {
                         />
                         <Item
                             title="Maps"
-                            //to={pages.CHAT}
+                            to={pages.MAP}
                             icon={<MapIcon/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Schedule"
-                            //to={pages.CHAT}
+                            to={pages.SCHEDULE}
                             icon={<ScheduleIcon/>}
                             selected={selected}
                             setSelected={setSelected}

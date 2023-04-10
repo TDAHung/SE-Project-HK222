@@ -1,0 +1,49 @@
+.events {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.events .ant-badge-status {
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.notes-month {
+    font-size: 28px;
+    text-align: center;
+}
+.notes-month section {
+    font-size: 28px;
+}
+
+.calendar{
+    margin-top: 10rem;
+    width: 80%;
+    margin-left: 5rem;
+}
+
+.calendar__user{
+    display: flex;
+    align-items: center;    
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins';
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.calendar__user .calendar__img{
+    height: 5rem;
+    width: 5rem;
+    margin-right: 1rem;
+}
+
+.calendar__user img{
+    border-radius: 50%;
+}
+
+.calendar__task{
+    font-family: 'Poppins';
+    font-size: 1.5rem;
+}
