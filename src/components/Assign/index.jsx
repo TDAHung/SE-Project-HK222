@@ -26,9 +26,9 @@ const Assign = () =>{
                 <div className="assign__option">
                     <div className="assign__week">
                         <div className="assign__week_img">
-                            <img src={arrow} style={{"width": "1rem","rotate":"90deg", "cursor":"pointer"}} onClick={()=>{if(date > 0) setDate(date-1);}} alt="" />
+                            <img src={arrow} style={{"width": "1rem","rotate":"90deg", "cursor":"pointer"}} onClick={()=>{if(date > 1) setDate(date-1);}} alt="" />
                         </div>
-                        {`Week: ${date}`}
+                        {`Month: ${date}`}
                         <div className='assign__week_img'>
                             <img src={arrow} style={{"width": "1rem","rotate":"-90deg", "cursor":"pointer"}}onClick={()=>{setDate(date+1)}} alt="" />
                         </div>

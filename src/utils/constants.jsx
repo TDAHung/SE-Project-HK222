@@ -7,6 +7,8 @@ export const pages ={
     PROFILE: 'profile',
     SETTING: 'setting',
     REGISTER: 'register',
+    MAP: 'map',
+    SCHEDULE: 'schedule',
     TEST: 'test',
 };
 

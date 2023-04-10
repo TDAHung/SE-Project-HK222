@@ -22,6 +22,8 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import { PublicRoute, PrivateRoute, AdminRoute } from './components/Route'
 import Test from './components/Test'
+import Map from './components/Map'
+import Schedule from './components/Schedule'
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -51,6 +53,8 @@ function App() {
             <Route path={pages.HISTORY} element={<History />}/>
             <Route path={pages.CHAT} element={<Chat />}/>
             <Route path={pages.PROFILE} element={<Profile />}/>
+            <Route path={pages.MAP} element={<Map />} />
+            <Route path={pages.SCHEDULE} element={<Schedule />}/>
             <Route path={pages.SETTING} element={<Setting />}/>
           </Route>
         </Routes>

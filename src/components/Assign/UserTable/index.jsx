@@ -20,6 +20,7 @@ const objectAssign = {
 
 const UserTable = ({role}) => {
     const [userData, setUserData] =useState([]);
+    const [dataFetch, setDataFetch] = useState([]);
     const [loadingUser, setLoadingUser] = useState(true);
     const [modal,setModal] = useState(false);
     const [assignUserId, setAssignUserId] = useState();
@@ -58,7 +59,7 @@ const UserTable = ({role}) => {
             try{
                 const user = new User();
                 const dataFetchUser = await user.getAllUser();
-                setUserData(dataFetchUser);
+                setDataFetch(dataFetchUser);
                 setTableUserParams({
                     ...tableUserParams,
                     pagination: {
@@ -73,6 +74,13 @@ const UserTable = ({role}) => {
         } 
         fetch();
     },[JSON.stringify(tableUserParams)]);
+
+    useEffect(()=>{
+        const dataAfterFilter = dataFetch.filter(element=>{
+            return role === element.role;
+        });
+        setUserData(dataAfterFilter);
+    },[role]);
 
     const handleTableUserChange = (pagination, filters, sorter) => {
         setTableUserParams({
