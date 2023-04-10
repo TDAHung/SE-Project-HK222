@@ -87,11 +87,12 @@ const Schedule = () =>{
             className="modal"
         >
             <div className="modal__task__description">
+                <div className="modal__task">ID Task: {idTask}</div>
+                <div className="line"></div>
                 <div className="modal__task">
                         <img src={location} alt="" />
                         Address: TPHCM
                 </div>
-                <div className="line"></div>
                 <div>
                     <div className="modal__task">
                         <img src={weight} alt="" />
