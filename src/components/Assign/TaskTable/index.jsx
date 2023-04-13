@@ -130,9 +130,16 @@ const TaskTable = ({date}) => {
             <div className="modal__task">{job === 'mcp' ? `ID: ${jobID}`: `ID: ${jobID}`}</div>
             <div className="modal__task__description">
             {
-                job === 'mcp' ? <div className="modal__task">
-                    <img src={location} alt="" />
-                    Address: TPHCM
+                job === 'mcp' ? 
+                <div>
+                    <div className="modal__task">
+                        <img src={location} alt="" />
+                        Starting Point: TPHCM
+                    </div>
+                    <div className="modal__task">
+                        <img src={location} alt="" />
+                        Destination Point: TPHCM
+                    </div>
                 </div> : <div>
                 <div className="modal__task">
                     <img src={weight} alt="" />

@@ -33,7 +33,6 @@ const History = () =>{
         console.log(id);
         await task.deleteTask(id);
     }
-
     
 const columns = [
     {
@@ -66,6 +65,14 @@ const columns = [
                     <div className="table__user__name">Anonymous</div>
                 </div>
             }
+        }
+    },
+    {
+        title: "Type",
+        dataIndex: 'role',
+        align: 'center',
+        render: (_,record) => {
+            return <div>{record.user.role.charAt(0).toUpperCase() + record.user.role.slice(1)}</div>
         }
     },
     {

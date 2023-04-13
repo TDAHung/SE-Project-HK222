@@ -1,16 +1,11 @@
 //import style
 import "./Test.css";
 
-//import lib
-import { Form,Button, Input } from "antd";
-import { useEffect, useState } from "react";
-
-//import controller
-import User from "../../controller/user/userController";
-
 //import components
-import UserEdit from "./User";
-import TaskEdit from "./Task";
+import UserEdit from "./UserEdit";
+import TaskEdit from "./TaskEdit";
+import McpAdd from "./McpAdd";
+import VehicleAdd from "./VehicleAdd";
 
 
 
@@ -18,6 +13,8 @@ const Test = () => {
     return <div className="test">
         <UserEdit />
         <TaskEdit />
+        <McpAdd />
+        <VehicleAdd />
     </div>
 }
 

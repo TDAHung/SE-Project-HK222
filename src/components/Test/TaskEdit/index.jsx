@@ -88,6 +88,7 @@ const TaskEdit = () =>{
         <Form
             layout="vertical"
         >
+            <div className="form__title">Edit Task</div>
             {Items}
             <Form.Item label={"Deadline"} key="date">
                 <DatePicker name="date" onChange={onChangeDate}/>

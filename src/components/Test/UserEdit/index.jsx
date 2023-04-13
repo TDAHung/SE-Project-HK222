@@ -67,6 +67,7 @@ const UserEdit = () =>{
         <Form
             layout="vertical"
         >
+            <div className="form__title">Edit User</div>
             {Items}
             <Form.Item><Button onClick={onGetUser}>Get</Button></Form.Item>
             <Form.Item><Button onClick={onEdit}>Edit</Button></Form.Item>
