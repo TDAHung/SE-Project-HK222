@@ -32,7 +32,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     return (
         <MenuItem
             active={selected === title} 
-            style={{color: colors.grey[100]}}
+            style={{color: colors.grey[900]}}
             onClick={() => setSelected(title)}
             icon={icon}
         >
@@ -120,7 +120,7 @@ const DashboardLayout = () => {
                             </Box>
 
                             <Box textAlign="center">
-                                <Typography variant="h2" fontWeight="bold" sx={{ m: "1rem 0 0 0" }} color={colors.grey[100]}>{userData.name}</Typography>
+                                <Typography variant="h2" fontWeight="bold" sx={{ m: "1rem 0 0 0" }} color={colors.grey[900]}>{userData.name}</Typography>
                                 <Typography variant="h5" color={colors.greenAccent[500]}>{userData.role}</Typography>
                             </Box>
                         </Box>
