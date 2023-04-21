@@ -238,7 +238,13 @@ const UserTable = ({role}) => {
                             style={{width: 470, marginTop: "2rem"}}
                         >
                             {
-                                mcpData.map((item) => <Option key={item}>{item.id}</Option>)
+                                mcpData.map((item) => <Option key={item}>
+                                        {item.id}.<br/>
+                                        Start from: {item.startPoint}<br/>
+                                        Go to: {item.destinationPoint}<br/>
+                                        Status: {item.status}
+                                    </Option>
+                                )
                             }
                         </Select>                     
                     </Space>
@@ -248,7 +254,13 @@ const UserTable = ({role}) => {
                             style={{width: 470, marginTop: "2rem"}}
                         >
                             {
-                                vehicleData.map((item) => <Option key= {item}>{item.id}</Option>)
+                                vehicleData.map((item) => <Option key= {item}>
+                                        {item.id}.<br/>
+                                        Weight: {item.weight}<br/>
+                                        Capacity: {item.capacity}<br/>
+                                        Fuel: {item.fuel}<br/>
+                                        Status: {item.status}
+                                    </Option>)
                             }
                         </Select>
                     </Space>
