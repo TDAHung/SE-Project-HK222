@@ -1,6 +1,7 @@
 .modal__footer{
     display: flex;
     justify-content: end;
+    margin-top: 2rem;
 }
 .assign__input__field{
     font-family: 'Poppins';
