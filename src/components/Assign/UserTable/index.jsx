@@ -121,16 +121,25 @@ const UserTable = ({role}) => {
     };
 
     // formItems elements data
-    const formItems = [
-        {
-            name: 'mcp',
-            label: 'MCP',
-        },
-        {
-            name: 'vehicle',
-            label: 'Vehicle',
-        }
-    ];
+    // const formItems = [
+    //     {
+    //         name: 'mcp',
+    //         label: 'MCP',
+    //     },
+    //     {
+    //         name: 'vehicle',
+    //         label: 'Vehicle',
+    //     }
+    // ];
+    const [mcpData, setMcpData] = useState([]);
+    useEffect(() => {
+        fetch("https://6437eb53894c9029e8c9ce7b.mockapi.io/mcp").then((data)=>data.json()).then((item)=>setMcpData(item))
+    }, []);
+
+    const [vehicleData, setVehicleData] = useState([]);
+    useEffect(() => {
+        fetch("https://6437eb53894c9029e8c9ce7b.mockapi.io/vehicle").then((data) => data.json()).then((item)=>setVehicleData(item))
+    }, []);
     
      const onChangeAssign = event =>{
         const name = event.target.name;
@@ -147,32 +156,32 @@ const UserTable = ({role}) => {
         setAssignData({...objectAssign});
     }
     
-    const renderForm = formItems.map(element=>{
-        const props = {
-            placeholder: `Enter your ${element.label} ID`,
-            className: "assign__input__field",
-            name: `${element.name}`
-        };
-        const rules = [{
-            whitespace: false,
-            required: true,
-            message: `${element.label} can not be empty`
-            }];
+    // const renderForm = formItems.map(element=>{
+    //     const props = {
+    //         placeholder: `Enter your ${element.label} ID`,
+    //         className: "assign__input__field",
+    //         name: `${element.name}`
+    //     };
+    //     const rules = [{
+    //         whitespace: false,
+    //         required: true,
+    //         message: `${element.label} can not be empty`
+    //         }];
     
-        return (
-            // <Form.Item key={element.name} className="login__input"
-            // name={element.name} label={element.label}
-            // rules={rules}
-            // >
-            // <Input {...props} onChange={event=>{onChangeAssign(event)}} value={assignData[element.name]}/>
-            // </Form.Item>
-            <Space>
-                <Select>
-                    <Option value="lucy">Lucy</Option>
-                </Select>
-            </Space>
-        )
-    });
+    //     return (
+    //         // <Form.Item key={element.name} className="login__input"
+    //         // name={element.name} label={element.label}
+    //         // rules={rules}
+    //         // >
+    //         // <Input {...props} onChange={event=>{onChangeAssign(event)}} value={assignData[element.name]}/>
+    //         // </Form.Item>
+    //         <Space>
+    //             <Select>
+    //                 <Option value="lucy">Lucy</Option>
+    //             </Select>
+    //         </Space>
+    //     )
+    // });
 
 
     const footerUser = () => <span className="table__footer">Total: {userData.length}</span>;
@@ -207,10 +216,42 @@ const UserTable = ({role}) => {
             footer={null}
             className="modal"
             >   
-                <div className="modal__title">{`Assign for ID: ${assignUserId}`}</div>
-                <div className='line'></div>
+                <div className="modal__title">
+                    Assign for ID:
+                    <Space>
+                        <Select
+                            defaultValue="Unassigned ID"
+                            style={{width: 100}}
+                        >
+                            {
+                                dataFetch.map((item) => <Option>{item.id}</Option>)
+                            }
+                        </Select>
+                    </Space>
+                </div>
+                {/* <div className='line'></div> */}
                 <Form layout='vertical'>
-                    {renderForm}
+                    {/* {renderForm} */}
+                    <Space>
+                        <Select
+                            defaultValue="MCP"
+                            style={{width: 470, marginTop: "2rem"}}
+                        >
+                            {
+                                mcpData.map((item) => <Option key={item}>{item.id}</Option>)
+                            }
+                        </Select>                     
+                    </Space>
+                    <Space>
+                        <Select
+                            defaultValue="Vehicles"
+                            style={{width: 470, marginTop: "2rem"}}
+                        >
+                            {
+                                vehicleData.map((item) => <Option key= {item}>{item.id}</Option>)
+                            }
+                        </Select>
+                    </Space>
                     <div className='modal__footer'>
                     <Form.Item><Button className="modal__cancel" onClick={()=>{setModal(false); setAssignData({...objectAssign})}} >Cancel</Button></Form.Item>
                     <Form.Item><Button className="modal__assign" onClick={()=>{onAssign()}}>Assign</Button></Form.Item>
