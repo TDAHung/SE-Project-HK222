@@ -217,14 +217,14 @@ const UserTable = ({role}) => {
             className="modal"
             >   
                 <div className="modal__title">
-                    Assign for ID:
+                    Assign for:
                     <Space>
                         <Select
-                            defaultValue="Unassigned ID"
-                            style={{width: 100}}
+                            defaultValue="Unassigned"
+                            style={{width: 150}}
                         >
                             {
-                                dataFetch.map((item) => <Option>{item.id}</Option>)
+                                dataFetch.map((item) => <Option>{item.id}. {item.name}</Option>)
                             }
                         </Select>
                     </Space>
