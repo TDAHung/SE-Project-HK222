@@ -1,8 +1,7 @@
 //import lib
-import { Table } from 'antd';
+import { Table, Button, Form, Input, Modal, Select, Space } from 'antd';
 import { useEffect, useState } from "react";
 import uuid from 'react-uuid';
-import { Button, Form, Input, Modal } from 'antd'
 
 //import style
 import "./UserTable.css";
@@ -38,19 +37,48 @@ const UserTable = ({role}) => {
             dataIndex: 'unassigned',
             key: 'unassigned',
             render: (_,record) => {
+                console.log(record);
                 return <div className="table__user">
                     <div className='table__user__info'>
                         <div className="table__user__img"><img src={record.imgUrl||logo} alt="userimgUrl"/></div>
                         <div className="table__user__name">{record.name??"Anonymous"}</div>
                     </div>
-                    <Button className="assign__button" onClick={()=>{
+                    {/* <Button className="assign__button" onClick={()=>{
                         setAssignUserId(record.id);
                         setModal(true);
                         console.log(assignData);
-                    }}>Assign</Button>
+                    }}>Assign</Button>  */}
                 </div>
             },
             align:'center'
+        },
+        {
+            title: <div className='assign__title'>Role</div>,
+            dataIndex:'role',
+            key: 'role',
+            render: (_, record) => {
+                return (
+                    <div className="table_user">
+                        <div className='table__user__info'>
+                            <div>{record.role??"Anonymous"}</div>
+                        </div>
+                    </div>
+                )
+            }
+        },
+        {
+            title: <div className='assign__title'>Status</div>,
+            dataIndex:'status',
+            key: 'status',
+            render: (_, record) => {
+                return (
+                    <div className="table_user">
+                        <div className='table__user__info'>
+                            <div>{record.status??"Anonymous"}</div>
+                        </div>
+                    </div>
+                )
+            }
         },
     ];
 
@@ -81,6 +109,7 @@ const UserTable = ({role}) => {
         });
         setUserData(dataAfterFilter);
     },[role]);
+    
 
     const handleTableUserChange = (pagination, filters, sorter) => {
         setTableUserParams({
@@ -131,14 +160,20 @@ const UserTable = ({role}) => {
             }];
     
         return (
-            <Form.Item key={element.name} className="login__input"
-            name={element.name} label={element.label}
-            rules={rules}
-            >
-            <Input {...props} onChange={event=>{onChangeAssign(event)}} value={assignData[element.name]}/>
-            </Form.Item>
+            // <Form.Item key={element.name} className="login__input"
+            // name={element.name} label={element.label}
+            // rules={rules}
+            // >
+            // <Input {...props} onChange={event=>{onChangeAssign(event)}} value={assignData[element.name]}/>
+            // </Form.Item>
+            <Space>
+                <Select>
+                    <Option value="lucy">Lucy</Option>
+                </Select>
+            </Space>
         )
     });
+
 
     const footerUser = () => <span className="table__footer">Total: {userData.length}</span>;
 
@@ -155,6 +190,15 @@ const UserTable = ({role}) => {
             onChange={handleTableUserChange}
             footer={footerUser}
         />
+
+        <Button className="assign__button" onClick={()=>{
+            //setAssignUserId(record.id);
+            setModal(true);
+            console.log(assignData);
+        }}>
+            Assign
+        </Button>
+
             <Modal 
             open={modal}
             cancelText={null}
