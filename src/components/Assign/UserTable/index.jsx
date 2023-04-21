@@ -1,8 +1,7 @@
 //import lib
-import { Table } from 'antd';
+import { Table, Button, Form, Input, Modal, Select, Space } from 'antd';
 import { useEffect, useState } from "react";
 import uuid from 'react-uuid';
-import { Button, Form, Input, Modal } from 'antd'
 
 //import style
 import "./UserTable.css";
@@ -161,14 +160,20 @@ const UserTable = ({role}) => {
             }];
     
         return (
-            <Form.Item key={element.name} className="login__input"
-            name={element.name} label={element.label}
-            rules={rules}
-            >
-            <Input {...props} onChange={event=>{onChangeAssign(event)}} value={assignData[element.name]}/>
-            </Form.Item>
+            // <Form.Item key={element.name} className="login__input"
+            // name={element.name} label={element.label}
+            // rules={rules}
+            // >
+            // <Input {...props} onChange={event=>{onChangeAssign(event)}} value={assignData[element.name]}/>
+            // </Form.Item>
+            <Space>
+                <Select>
+                    <Option value="lucy">Lucy</Option>
+                </Select>
+            </Space>
         )
     });
+
 
     const footerUser = () => <span className="table__footer">Total: {userData.length}</span>;
 
