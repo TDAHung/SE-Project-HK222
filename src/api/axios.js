@@ -17,7 +17,7 @@ Axios.interceptors.request.use((config) => {
         throw new Error(`Expected 'config' and 'config.headers' not to be undefined`);
     }
     
-    config.headers.Authorization = 'Bearer ' + localStorage.getItem('accessToken');
+    config.headers.Authorization = "Bearer " + JSON.parse(localStorage.getItem('accessToken'));
 
     return config
 }, (error) => {

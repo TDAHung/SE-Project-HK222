@@ -19,9 +19,10 @@ import {
 import { GOOGLE_API_KEY } from "../../../utils/constants";
 
 const defaultObject = {
-  namePoint: "",
-  addressPoint: "",
-  status: "",
+  name: "",
+  address: "",
+  lat: "",
+  lng: ""
 };
 
 const containerStyle = {
@@ -39,6 +40,8 @@ const NewMCP = () => {
   const [mcpData, setMcpData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const [ libraries ] = useState(['places']);
+
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -49,12 +52,11 @@ const NewMCP = () => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: GOOGLE_API_KEY,
-    libraries: ["places"],
+    libraries,
   });
 
   const [map, setMap] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
-  const [address, setAddress] = useState("");
   const [isViewMap, setIsViewMap] = useState(false);
   const [inputSearch, setInputSeach] = useState("");
   const [inputName, setInputName] = useState("");
@@ -86,11 +88,10 @@ const NewMCP = () => {
       setObjectPlace({
         address: objPLace["formatted_address"],
         location: {
-          lat: objPLace["geometry"]["location"].lat(),
-          lng: objPLace["geometry"]["location"].lng(),
-        },
+            lat: objPLace["geometry"]["location"].lat(),
+            lng: objPLace["geometry"]["location"].lng(),
+        }
       });
-      setAddress(objPLace["formatted_address"]);
       setInputSeach(objPLace["formatted_address"]);
     }
   });
@@ -101,15 +102,18 @@ const NewMCP = () => {
     const fetch = async () => {
       try {
         setLoading(true);
-        const data = await mcp.getAllMCP();
-        setMcpData(data);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 100,
-          },
-        });
+        await mcp.getAllMCP().then(res =>{
+            console.log(JSON.parse(res));
+            setMcpData(JSON.parse(res));
+            setTableParams({
+            ...tableParams,
+            pagination: {
+                ...tableParams.pagination,
+                total: 100,
+            },
+            });
+        })
+
       } catch (error) {
         console.log(error);
       }
@@ -150,45 +154,20 @@ const NewMCP = () => {
     },
   ];
 
-  const onChange = (event) => {
-    setMcpAdd((prev) => ({
-      ...prev,
-      [event.target.name]: event.target.value,
-      status: "free",
-    }));
-  };
-
   const onAdd = async () => {
-    // await mcp.addMCP(mcpAdd);
-    console.log(mcpData);
+    const obj_request = {
+        name: inputName,
+        address: objectPlace.address,
+        lat: objectPlace.location.lat,
+        lng: objectPlace.location.lng
+    };
+    mcp.addMCP(obj_request).then((res) => {
+        console.log(res);
+    })
     // setMcpAdd({ ...defaultObject });
-    // setModal(false);
+    setModal(false);
   };
 
-  const formItems = [
-    {
-      label: "Name",
-      name: "namePoint",
-    },
-    {
-      label: "Address",
-      name: "addressPoint",
-    },
-  ];
-
-  const formRender = formItems.map((element) => {
-    return (
-      <Form.Item label={element.label} key={element.name}>
-        <Input
-          type="text"
-          className={`profile__${element.name}`}
-          name={element.name}
-          onChange={(event) => onChange(event)}
-          value={mcpAdd[element.name]}
-        />
-      </Form.Item>
-    );
-  });
 
   const defaultFooter = () => {
     return <span className="table__footer">{`Total: ${mcpData.length}`}</span>;
@@ -266,7 +245,7 @@ const NewMCP = () => {
             />
           </Form.Item>
           <Form.Item label="MCP" name="MCP">
-            {/* <Autocomplete
+            <Autocomplete
               onLoad={onLoadAutoComplete}
               onPlaceChanged={onPlaceChanged}
               bounds={
@@ -274,7 +253,7 @@ const NewMCP = () => {
                   new window.google.maps.LatLng(center.lat, center.lng)
                 )
               }
-            > */}
+            >
               <Input
                 type="text"
                 placeholder="Add MCP point"
@@ -284,7 +263,7 @@ const NewMCP = () => {
                 }}
                 style={{ width: "420px" }}
               />
-            {/* </Autocomplete> */}
+            </Autocomplete>
           </Form.Item>
           <Form.Item style={{ display: "flex", justifyContent: "center" }}>
             <Button
