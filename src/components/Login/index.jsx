@@ -2,27 +2,21 @@
 import { Button, Form, Input } from 'antd'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 
 //import style
 import './Login.css';
 
 //import image
-import logo from '../../assets/images/Logo.jpg';
+import logo from '../../assets/images/Logo.png';
 
 //import api
 import User from '../../controller/user/userController';
-
-//import constant
-import { pages } from '../../utils/constants';
 
 
 const Login = () =>{
     const [loginError, setLoginError] = useState('');
     const [canSubmit, setCanSubmit] = useState(false);
-    const [loginData, setLoginData] = useState({});
     const [userData,setUserData] = useState([]);
-    const [correctUser, setCorrectUser] = useState(false);
     const user = new User();
 
     useEffect(()=>{

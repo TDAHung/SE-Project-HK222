@@ -12,6 +12,9 @@ import DashboardLayout from './components/Dashboard'
 import History from './components/History'
 import Login from './components/Login'
 import Profile from './components/Profile'
+import New from './components/New'
+import NewMCP from './components/New/MCP'
+import NewUser from './components/New/User'
 import Setting from './components/Setting'
 import Chat from './components/Chat'
 import Loading from './components/Loading'
@@ -22,7 +25,6 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import { PublicRoute, PrivateRoute, AdminRoute } from './components/Route'
 import Test from './components/Test'
-import Map from './components/Map'
 import Schedule from './components/Schedule'
 
 function App() {
@@ -49,11 +51,16 @@ function App() {
           />
           <Route path={pages.DASHBOARD} element={<PrivateRoute><DashboardLayout isSidebar={isSidebar}/></PrivateRoute>}>
             <Route path={pages.TEST} element={<AdminRoute><Test /></AdminRoute>} />
+
+            <Route path={pages.ADD} element={<AdminRoute><New /></AdminRoute>}>
+              <Route path={pages.MCP} element={<AdminRoute><NewMCP /></AdminRoute>}/>
+              <Route path={pages.USER} element={<AdminRoute><NewUser /></AdminRoute>}/>
+            </Route>
+
             <Route path={pages.ASSIGN} element={<Assign />} /> 
             <Route path={pages.HISTORY} element={<History />}/>
             <Route path={pages.CHAT} element={<Chat />}/>
             <Route path={pages.PROFILE} element={<Profile />}/>
-            <Route path={pages.MAP} element={<Map />} />
             <Route path={pages.SCHEDULE} element={<Schedule />}/>
             <Route path={pages.SETTING} element={<Setting />}/>
           </Route>

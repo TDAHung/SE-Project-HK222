@@ -6,7 +6,7 @@ import uuid from 'react-uuid';
 //import style
 import "./UserTable.css";
 import "../Assign.css";
-import logo from "../../../assets/images/Logo.jpg";
+import logo from "../../../assets/images/Logo.png";
 
 //import Controller
 import User from '../../../controller/user/userController';

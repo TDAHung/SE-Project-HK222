@@ -10,6 +10,14 @@ class User {
         }
     };
 
+    async addUser(data){
+        try{
+            return await Axios.add(`${query}`,data);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     async getAllUser(params={}){
         try{
             return await Axios.get(`${query}`,params);

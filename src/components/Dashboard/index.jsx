@@ -24,7 +24,7 @@ import { pages } from "../../utils/constants";
 
 //import style
 import Header from "../Header";
-import logo from "../../assets//images/Logo.jpg";
+import logo from "../../assets//images/Logo.png";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -155,13 +155,26 @@ const DashboardLayout = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        <Item
-                            title="Maps"
-                            to={pages.MAP}
+                        {
+                            userData.role === 'admin' ? <Item
+                            title="Add User"
+                            to={`${pages.ADD}/${pages.USER}`}
                             icon={<MapIcon/>}
                             selected={selected}
                             setSelected={setSelected}
-                        />
+                            /> : null
+                        }
+                        
+                        {
+                            userData.role === 'admin' ? <Item
+                            title="Add MCP"
+                            to={`${pages.ADD}/${pages.MCP}`}
+                            icon={<MapIcon/>}
+                            selected={selected}
+                            setSelected={setSelected}
+                            /> : null
+                        }
+
                         <Item
                             title="Schedule"
                             to={pages.SCHEDULE}

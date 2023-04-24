@@ -72,6 +72,7 @@ const columns = [
         dataIndex: 'role',
         align: 'center',
         render: (_,record) => {
+            if(record.user)
             return <div>{record.user.role.charAt(0).toUpperCase() + record.user.role.slice(1)}</div>
         }
     },

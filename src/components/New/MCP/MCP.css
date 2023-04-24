@@ -1,0 +1,15 @@
+.table__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table__add__mcp{
+    margin-right: 10rem;
+}
+
+.Map{
+    height: 30rem;
+    border: black solid 0.1rem;
+    border-radius: 1rem;
+}
