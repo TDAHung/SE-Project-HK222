@@ -175,6 +175,17 @@ const DashboardLayout = () => {
                             /> : null
                         }
 
+                        {
+                            userData.type === 'Back officer' ? <Item
+                            title="Add Vehicle"
+                            to={`${pages.ADD}/${pages.VEHICLE}`}
+                            icon={<MapIcon/>}
+                            selected={selected}
+                            setSelected={setSelected}
+                            /> : null
+                        }
+
+
                         <Item
                             title="Schedule"
                             to={pages.SCHEDULE}

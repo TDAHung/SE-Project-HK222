@@ -15,6 +15,7 @@ import Profile from './components/Profile'
 import New from './components/New'
 import NewMCP from './components/New/MCP'
 import NewUser from './components/New/User'
+import NewVehicle from './components/New/Vehicle'
 import Setting from './components/Setting'
 import Chat from './components/Chat'
 import Loading from './components/Loading'
@@ -55,6 +56,7 @@ function App() {
             <Route path={pages.ADD} element={<AdminRoute><New /></AdminRoute>}>
               <Route path={pages.MCP} element={<AdminRoute><NewMCP /></AdminRoute>}/>
               <Route path={pages.USER} element={<AdminRoute><NewUser /></AdminRoute>}/>
+              <Route path={pages.VEHICLE} element={<AdminRoute><NewVehicle/></AdminRoute>}></Route>
             </Route>
 
             <Route path={pages.ASSIGN} element={<Assign />} /> 
