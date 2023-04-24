@@ -1,6 +1,8 @@
 //import lib
-import { useState } from "react";
-import { Form,Button, Input, Select, Space, Modal } from "antd";
+import { useState, useEffect } from "react";
+import { Form,Button, Input, Select, Space, Modal, Table } from "antd";
+import uuid from "react-uuid";
+
 
 //import user controller
 import User from "../../../controller/user/userController";
@@ -8,27 +10,91 @@ import User from "../../../controller/user/userController";
 import './User.css'
 
 const defaultObject = {
-    created_at: "",
     id: "",
     name: "",
-    imgUrl: "",
     username: "",
     password: "",
-    updated_at: "",
     role: "",
     status: "",
 };
 
 const typeRole = ["admin","collector","janitor"];
+const user = new User();
 
 const NewUser = () => {
-    const [submitUserData, setSubmitUserData] = useState({});
+    const [submitUserData, setSubmitUserData] = useState({...defaultObject});
+    const [userData,setUserData] = useState([]);
     const [modal,setModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [tableParams, setTableParams] = useState({
+        pagination: {
+          current: 1,
+          pageSize: 7,
+        }
+    });
 
-    const user = new User();
+    useEffect(()=>{
+        const fetch = async () =>{
+            try{
+                setLoading(true);
+                const data = await user.getAllUser();
+                setUserData(data);
+                setTableParams({
+                    ...tableParams,
+                    pagination: {
+                        ...tableParams.pagination,
+                        total: 100
+                    }
+                });
+            }catch(error){
+                console.log(error);
+            }
+            setLoading(false);
+        }
+        fetch();
+    },[modal]);
+
+    const columns = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            sorter: (a, b) => a.id - b.id,
+            width: '5%'
+        },
+        {
+            title: 'Avatar',
+            dataIndex: 'imgUrl',
+            render: (_,record) => {
+                console.log(record);
+                return <div><img style={{borderRadius: '50%'}} src={record.imgUrl} alt="" /></div>
+            }
+        },
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            width: '30%',
+        },
+        {
+            title: 'Username',
+            dataIndex: 'username',
+            width: '40%',
+        },
+        {
+            title: 'Role',
+            dataIndex: 'role',
+            width: '20%',
+        },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            width: '10%',
+            render:(_,record)=>{
+                return <div>{record.status?"Free":"Busy"}</div>
+            }
+        },
+    ];
 
     const onChange = (event) => {
-
         if(event.target){
             setSubmitUserData(prev=>({
                 ...prev, [event.target.name]: event.target.value, 'status': true
@@ -41,9 +107,10 @@ const NewUser = () => {
         console.log(submitUserData);
     }
 
-    const onEdit = async () => {
+    const onCreate = async () => {
         await user.addUser(submitUserData);
-        setModal(true);
+        setSubmitUserData({...defaultObject});
+        setModal(false);
     }
 
     const formItems= [
@@ -61,20 +128,59 @@ const NewUser = () => {
         },
     ];
 
+    const handleTableChange = (pagination, filters, sorter) => {
+        setTableParams({
+          pagination,
+          filters,
+          ...sorter,
+        });
+        if (pagination.pageSize !== tableParams.pagination?.pageSize) setUserData([]);
+    };
+
     const Items = formItems.map(element=>{
         return (
         <Form.Item label={element.label} key={element.name}>
-            <Input type="text" className={`profile__${element.name}`} disabled={element.disable || false} name={element.name} onChange={event=>onChange(event)} value={element.value}/>
+            <Input type="text" className={`profile__${element.name}`} name={element.name} onChange={event=>onChange(event)} value={submitUserData[element.name]}/>
         </Form.Item>)
     });
 
+    const defaultFooter = () =>{
+        return <span className="table__footer">{`Total: ${userData.length}`}</span>
+    };
+
     return <div className="form">
-        <Form
-            layout="vertical"
+        <div className="table">
+        <div className="table__header">
+            <div className="table__title">Employee</div>
+            <div className="table__add__mcp"><Button onClick={()=>{setModal(true)}}>Create Employee</Button></div>
+        </div>
+        <div className="table__content">
+        <Table 
+            columns={columns}
+            loading={loading}
+            rowKey={()=>{uuid()}}
+            pagination={tableParams.pagination}
+            dataSource={userData}
+            rowClassName="table__row"
+            size="large"
+            onChange={handleTableChange}
+            footer={defaultFooter}
+        />
+        </div>
+        <Modal
+            open={modal}
+            cancelText={null}
+            closable={false}
+            confirmLoading={true}
+            footer={<div className='modal__footer'>
+                <Button className="modal__assign" onClick={()=>{onCreate()}}>Create</Button>
+                <Button className="modal__cancel" onClick={()=>{setModal(false)}}>Cancel</Button>
+            </div>}
+            className="modal"
         >
-            <div className="form__title">Add New Employee</div>
-            {Items}
-            <Space>
+            <Form>
+                {Items}
+                <Space>
                 <Select                             
                 defaultValue="Select Role"
                 style={{width: 150,    
@@ -92,15 +198,9 @@ const NewUser = () => {
                     }
                 </Select>
             </Space>
-            <Button className='profile__button' disabled={false} onClick={onEdit}>Create</Button>
-        </Form>
-        <Modal
-            open={modal}
-            onCancel={()=>{setModal(false)}}
-            onOk={()=>{setModal(false)}}
-        >
-            Add Successfully
+            </Form>
         </Modal>
+        </div>
     </div>
 }
 
