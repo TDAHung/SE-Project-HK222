@@ -28,7 +28,7 @@ class MCP {
 
     async addMCP(data){
         try{
-            await AxiosTask.add(`${query}`,data);
+            await AxiosTask.add('/MCP/create' ,data);
         }catch(error){
             console.log(error);
         }

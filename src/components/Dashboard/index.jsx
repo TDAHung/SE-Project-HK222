@@ -101,7 +101,7 @@ const DashboardLayout = () => {
                                 ml="1.5rem"
                             >
                                 <Typography variant="h3" color="#FFFFFF">
-                                    {String(userData.role).toUpperCase()}
+                                    {String(userData.type).toUpperCase()}
                                 </Typography>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlined/>
@@ -121,7 +121,7 @@ const DashboardLayout = () => {
 
                             <Box textAlign="center">
                                 <Typography variant="h2" fontWeight="bold" sx={{ m: "1rem 0 0 0" }} color={colors.grey[900]}>{userData.name}</Typography>
-                                <Typography variant="h5" color={colors.greenAccent[500]}>{userData.role}</Typography>
+                                <Typography variant="h5" color={colors.greenAccent[500]}>{userData.type}</Typography>
                             </Box>
                         </Box>
                     )}
@@ -156,7 +156,7 @@ const DashboardLayout = () => {
                             setSelected={setSelected}
                         />
                         {
-                            userData.role === 'admin' ? <Item
+                            userData.type === 'Back officer' ? <Item
                             title="Add User"
                             to={`${pages.ADD}/${pages.USER}`}
                             icon={<MapIcon/>}
@@ -166,7 +166,7 @@ const DashboardLayout = () => {
                         }
                         
                         {
-                            userData.role === 'admin' ? <Item
+                            userData.type === 'Back officer' ? <Item
                             title="Add MCP"
                             to={`${pages.ADD}/${pages.MCP}`}
                             icon={<MapIcon/>}

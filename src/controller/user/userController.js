@@ -2,6 +2,14 @@ import * as Axios from "../../api/axios";
 const query = '/users';
 
 class User {
+    async login(user) {
+        try{
+            return await Axios.add('/employee/login', user);
+        }catch(error){
+            console.log(error);
+        }
+    };
+
     async getUser(id,params={}) {
         try{
             return await Axios.get(`${query}/${id}`,params);

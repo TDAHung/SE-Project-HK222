@@ -4,7 +4,7 @@ import { API_URL } from "../utils/constants";
 
 const Axios = axios.create({
     baseURL: API_URL,
-    headers:{
+    headers: {
         'Content-Type': 'application/json'
     }
 });
@@ -36,7 +36,7 @@ export const get = async (url, option = {}) =>{
 }
 
 export const add = async (url, data) => {
-    await Axios.post(url,data);
+    return await Axios.post(url,data);
 }
 
 export const destroy = async (url) => {
