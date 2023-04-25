@@ -10,6 +10,8 @@ import logo from "../../../assets/images/Logo.png";
 
 //import Controller
 import User from '../../../controller/user/userController';
+import Vehicle from '../../../controller/vehicle/vehicleController';
+import MCP from '../../../controller/mcp/mcpController';
 
 const objectAssign = {
     id:'',
@@ -17,12 +19,14 @@ const objectAssign = {
     vehicle: '',
 };
 
+const vehicle = new Vehicle();
+const mcp = new MCP();
+
 const UserTable = ({role}) => {
     const [userData, setUserData] =useState([]);
     const [dataFetch, setDataFetch] = useState([]);
     const [loadingUser, setLoadingUser] = useState(true);
     const [modal,setModal] = useState(false);
-    const [assignUserId, setAssignUserId] = useState();
     const [tableUserParams, setTableUserParams] = useState({
         pagination: {
           current: 1,
@@ -43,11 +47,6 @@ const UserTable = ({role}) => {
                         <div className="table__user__img"><img src={record.imgUrl||logo} alt="userimgUrl"/></div>
                         <div className="table__user__name">{record.name??"Anonymous"}</div>
                     </div>
-                    {/* <Button className="assign__button" onClick={()=>{
-                        setAssignUserId(record.id);
-                        setModal(true);
-                        console.log(assignData);
-                    }}>Assign</Button>  */}
                 </div>
             },
             align:'center'
@@ -60,7 +59,7 @@ const UserTable = ({role}) => {
                 return (
                     <div className="table_user">
                         <div className='table__user__info'>
-                            <div>{record.role??"Anonymous"}</div>
+                            <div>{record.role.charAt(0).toUpperCase() + record.role.slice(1)}</div>
                         </div>
                     </div>
                 )
@@ -74,7 +73,7 @@ const UserTable = ({role}) => {
                 return (
                     <div className="table_user">
                         <div className='table__user__info'>
-                            <div>{record.status??"Anonymous"}</div>
+                            <div>{record.status?"Free":"Busy"}</div>
                         </div>
                     </div>
                 )
@@ -120,34 +119,31 @@ const UserTable = ({role}) => {
         if (pagination.pageSize !== tableUserParams.pagination?.pageSize) setUserData([]);
     };
 
-    // formItems elements data
-    // const formItems = [
-    //     {
-    //         name: 'mcp',
-    //         label: 'MCP',
-    //     },
-    //     {
-    //         name: 'vehicle',
-    //         label: 'Vehicle',
-    //     }
-    // ];
     const [mcpData, setMcpData] = useState([]);
     useEffect(() => {
-        fetch("https://6437eb53894c9029e8c9ce7b.mockapi.io/mcp").then((data)=>data.json()).then((item)=>setMcpData(item))
+        const fetch = async () =>{
+            try{
+                const data = await mcp.getAllMCP();
+                setMcpData(data);
+            }catch(error){
+                console.log(error);
+            }
+        } 
+        fetch();
     }, []);
 
     const [vehicleData, setVehicleData] = useState([]);
     useEffect(() => {
-        fetch("https://6437eb53894c9029e8c9ce7b.mockapi.io/vehicle").then((data) => data.json()).then((item)=>setVehicleData(item))
+        const fetch = async () => {
+            try{
+                const data = await vehicle.getAllVehicle();
+                setVehicleData(data);
+            }catch(error){
+                console.log(error);
+            }
+        }
+        fetch();
     }, []);
-    
-     const onChangeAssign = event =>{
-        const name = event.target.name;
-        const value = event.target.value;
-        setAssignData(prev=>({
-        ...prev, [name]:value, id: assignUserId
-        }));
-    }
 
     //call api to store
     const onAssign = () =>{
@@ -155,33 +151,6 @@ const UserTable = ({role}) => {
         console.log(assignData);
         setAssignData({...objectAssign});
     }
-    
-    // const renderForm = formItems.map(element=>{
-    //     const props = {
-    //         placeholder: `Enter your ${element.label} ID`,
-    //         className: "assign__input__field",
-    //         name: `${element.name}`
-    //     };
-    //     const rules = [{
-    //         whitespace: false,
-    //         required: true,
-    //         message: `${element.label} can not be empty`
-    //         }];
-    
-    //     return (
-    //         // <Form.Item key={element.name} className="login__input"
-    //         // name={element.name} label={element.label}
-    //         // rules={rules}
-    //         // >
-    //         // <Input {...props} onChange={event=>{onChangeAssign(event)}} value={assignData[element.name]}/>
-    //         // </Form.Item>
-    //         <Space>
-    //             <Select>
-    //                 <Option value="lucy">Lucy</Option>
-    //             </Select>
-    //         </Space>
-    //     )
-    // });
 
 
     const footerUser = () => <span className="table__footer">Total: {userData.length}</span>;
@@ -201,7 +170,6 @@ const UserTable = ({role}) => {
         />
 
         <Button className="assign__button" onClick={()=>{
-            //setAssignUserId(record.id);
             setModal(true);
             console.log(assignData);
         }}>
