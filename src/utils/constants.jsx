@@ -10,6 +10,7 @@ export const pages ={
     ADD: 'new',
     MCP: 'mcp',
     USER: 'user',
+    VEHICLE: 'vehicle',
     SCHEDULE: 'schedule',
     TEST: 'test',
 };
