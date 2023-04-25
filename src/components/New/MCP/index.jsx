@@ -22,7 +22,7 @@ const defaultObject = {
   name: "",
   address: "",
   lat: "",
-  lng: ""
+  lng: "",
 };
 
 const containerStyle = {
@@ -36,11 +36,10 @@ const center = {
 };
 
 const NewMCP = () => {
-  const [mcpAdd, setMcpAdd] = useState({ ...defaultObject });
   const [mcpData, setMcpData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
-  const [ libraries ] = useState(['places']);
+  const [libraries] = useState(["places"]);
 
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -73,7 +72,6 @@ const NewMCP = () => {
   }, []);
 
   const onLoadAutoComplete = useCallback(function (autocomplete) {
-    console.log("autocomplete", autocomplete);
     setAutocomplete(autocomplete);
   });
 
@@ -81,16 +79,12 @@ const NewMCP = () => {
     if (autocomplete !== null) {
       // formatted_address
       let objPLace = autocomplete.getPlace();
-      console.log("address", objPLace["formatted_address"]);
-      console.log("lat", objPLace["geometry"]["location"].lat());
-      console.log("lng", objPLace["geometry"]["location"].lng());
-      console.log("objPLace", objPLace);
       setObjectPlace({
         address: objPLace["formatted_address"],
         location: {
-            lat: objPLace["geometry"]["location"].lat(),
-            lng: objPLace["geometry"]["location"].lng(),
-        }
+          lat: objPLace["geometry"]["location"].lat(),
+          lng: objPLace["geometry"]["location"].lng(),
+        },
       });
       setInputSeach(objPLace["formatted_address"]);
     }
@@ -102,25 +96,24 @@ const NewMCP = () => {
     const fetch = async () => {
       try {
         setLoading(true);
-        await mcp.getAllMCP().then(res =>{
-            console.log(JSON.parse(res));
-            setMcpData(JSON.parse(res));
-            setTableParams({
+        await mcp.getAllMCP().then((res) => {
+          console.log(JSON.parse(res));
+          setMcpData(JSON.parse(res));
+          setTableParams({
             ...tableParams,
             pagination: {
-                ...tableParams.pagination,
-                total: 100,
+              ...tableParams.pagination,
+              total: 100,
             },
-            });
-        })
-
+          });
+        });
       } catch (error) {
         console.log(error);
       }
       setLoading(false);
     };
     fetch();
-  }, [mcpAdd]);
+  }, []);
 
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
@@ -135,39 +128,45 @@ const NewMCP = () => {
   const columns = [
     {
       title: "Name",
-      dataIndex: "namePoint",
+      dataIndex: "name",
       sorter: true,
       width: "45%",
+      key: "name",
     },
     {
       title: "Address",
-      dataIndex: "addressPoint",
+      dataIndex: "address",
       sorter: true,
       width: "45%",
+      key: "address",
     },
     {
       title: "Status",
-      dataIndex: "status",
+      dataIndex: "active",
       sorter: true,
       width: "10%",
       align: "center",
+      key: "active",
+      render: (bool) => {
+        return bool ? "Active" : "Inactive";
+      },
     },
   ];
 
   const onAdd = async () => {
     const obj_request = {
-        name: inputName,
-        address: objectPlace.address,
-        lat: objectPlace.location.lat,
-        lng: objectPlace.location.lng
+      name: inputName,
+      address: objectPlace.address,
+      lat: objectPlace.location.lat,
+      lng: objectPlace.location.lng,
     };
     mcp.addMCP(obj_request).then((res) => {
-        console.log(res);
-    })
-    // setMcpAdd({ ...defaultObject });
+      const updateMCPData = [...mcpData];
+      updateMCPData.push(res.data);
+      setMcpData(updateMCPData);
+    });
     setModal(false);
   };
-
 
   const defaultFooter = () => {
     return <span className="table__footer">{`Total: ${mcpData.length}`}</span>;

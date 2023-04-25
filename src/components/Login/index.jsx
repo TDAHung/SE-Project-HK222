@@ -1,7 +1,6 @@
 //import lib
 import { Button, Form, Input } from "antd";
 import { useState } from "react";
-import { useEffect } from "react";
 import sign from "jwt-encode";
 //import style
 import "./Login.css";

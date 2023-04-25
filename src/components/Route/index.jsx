@@ -16,7 +16,7 @@ export const PublicRoute = ({children}) => {
 }
 
 export const AdminRoute = ({children}) => {
-    const authenticatedRole = JSON.parse(localStorage.getItem("user")).type;
+    const authenticatedRole = JSON.parse(localStorage.getItem("user")).role;
     if(authenticatedRole === 'Back officer') return children;
     return <Navigate to="/" />
 }

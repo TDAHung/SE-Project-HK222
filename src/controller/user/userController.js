@@ -8,7 +8,23 @@ class User {
         }catch(error){
             console.log(error);
         }
-    };
+    }
+
+    async getAllUser(params={}){
+        try{
+            return await Axios.get('/employee/getAll',params);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    async addUser(data){
+        try{
+            return await Axios.add('/employee/create',data);
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     async getUser(id,params={}) {
         try{
@@ -18,21 +34,9 @@ class User {
         }
     };
 
-    async addUser(data){
-        try{
-            return await Axios.add(`${query}`,data);
-        }catch(error){
-            console.log(error);
-        }
-    }
+    
 
-    async getAllUser(params={}){
-        try{
-            return await Axios.get(`${query}`,params);
-        }catch(error){
-            console.log(error);
-        }
-    }
+    
 
     async deleteUser(id){
         try{

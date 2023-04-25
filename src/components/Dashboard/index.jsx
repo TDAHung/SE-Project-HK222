@@ -156,7 +156,7 @@ const DashboardLayout = () => {
                             setSelected={setSelected}
                         />
                         {
-                            userData.type === 'Back officer' ? <Item
+                            userData.role === 'Back officer' ? <Item
                             title="Add User"
                             to={`${pages.ADD}/${pages.USER}`}
                             icon={<MapIcon/>}
@@ -166,7 +166,7 @@ const DashboardLayout = () => {
                         }
                         
                         {
-                            userData.type === 'Back officer' ? <Item
+                            userData.role === 'Back officer' ? <Item
                             title="Add MCP"
                             to={`${pages.ADD}/${pages.MCP}`}
                             icon={<MapIcon/>}
