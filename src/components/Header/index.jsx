@@ -53,8 +53,8 @@ const Header = () =>{
             </IconButton>
             <div className="notify__img"><img src={notify} alt="notify" /></div>
             <div className="user__info">
-                <div className="user__name">{userData.name}</div>
-                <div className="user__img" onClick = {handleShowOptions}> <img src={userData.imgUrl} alt="userIMG" /> </div>             
+                <div className="user__name">{userData.fullname}</div>
+                <div className="user__img" onClick = {handleShowOptions}> <img src={userData.avatar_URL} alt="userIMG" /> </div>             
             </div>  
                 {showOptions ? optionPanel(): null}         
             </div>

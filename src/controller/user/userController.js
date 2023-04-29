@@ -10,9 +10,13 @@ class User {
         }
     }
 
-    async getAllUser(params={}){
+    async getAllUser(status, employee){
         try{
-            return await Axios.get('/employee/getAll',params);
+            if (typeof status !== 'undefined' && typeof employee !== 'undefined') {
+                return await Axios.get(`/employee/getAll?status=${status}&employee=${employee}`);
+            }
+            return await Axios.get(`/employee/getAll`);
+
         }catch(error){
             console.log(error);
         }

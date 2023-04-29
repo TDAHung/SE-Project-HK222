@@ -2,6 +2,17 @@ import * as Axios from "../../api/axios";
 const query = '/tasks';
 
 class Task {
+    async getAllTask(role){
+        try{
+            if (typeof role !== 'undefined') {
+                return await Axios.get(`task/getAll?employee=${role}`);
+            }
+            return await Axios.get(`task/getAll`);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     async getTask(id,params={}) {
         try{
             return await Axios.get(`${query}/${id}`,params);
@@ -10,13 +21,7 @@ class Task {
         }
     };
 
-    async getAllTask(params={}){
-        try{
-            return await Axios.get(`${query}`,params);
-        }catch(error){
-            console.log(error);
-        }
-    }
+    
 
     async deleteTask(id){
         try{
@@ -26,9 +31,9 @@ class Task {
         }
     }
 
-    async addTask(data){
+    async addTask(data, employee){
         try{
-            await Axios.add(`${query}`,data);
+            return await Axios.add(`/task/create/${employee}`,data);
         }catch(error){
             console.log(error);
         }

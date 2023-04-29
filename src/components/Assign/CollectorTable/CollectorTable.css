@@ -1,0 +1,43 @@
+/* .assign__task__unassigned{
+    background: #F7F8FA;
+    width: 40%;
+    border-radius: 2rem;
+}
+
+.modal__task{
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    color: #343C44;
+    margin-bottom: 1rem;
+} */
+
+.table__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: "90%";
+}
+
+.table__add__task{
+    margin-right: 12rem;
+}
+.table__content {
+    /* width: "80%"; */
+    /* margin-right: 12rem; */
+    margin-left: 0px;
+}
+
+.modal__task img{
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+}
+
+.viewRouteModal {
+    left: 45px;
+    width: 550px;
+    /* height: 600px; */
+}

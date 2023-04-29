@@ -1,6 +1,6 @@
 //import lib
 import { useState, useEffect, useCallback } from "react";
-import { Form, Button, Input, Table, Modal } from "antd";
+import { Form, Button, Input, Table, Modal, Tag } from "antd";
 import uuid from "react-uuid";
 
 //import controller
@@ -130,14 +130,14 @@ const NewMCP = () => {
       title: "Name",
       dataIndex: "name",
       sorter: true,
-      width: "45%",
+      width: "35%",
       key: "name",
     },
     {
       title: "Address",
       dataIndex: "address",
       sorter: true,
-      width: "45%",
+      width: "55%",
       key: "address",
     },
     {
@@ -147,10 +147,16 @@ const NewMCP = () => {
       width: "10%",
       align: "center",
       key: "active",
-      render: (bool) => {
-        return bool ? "Active" : "Inactive";
-      },
-    },
+      render: (status) => {
+        let statusActive = status ? 'active' : 'inactive';
+        let color = status ? 'green' : 'volcano';
+        return (
+            <Tag color={color}>
+              {statusActive.toUpperCase()}
+            </Tag>
+          );
+        }
+    }
   ];
 
   const onAdd = async () => {

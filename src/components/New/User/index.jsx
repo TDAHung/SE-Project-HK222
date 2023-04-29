@@ -5,7 +5,7 @@ import {
   Button,
   Input,
   Select,
-  Space,
+  Tag,
   Modal,
   Table,
   DatePicker,
@@ -82,12 +82,29 @@ const NewUser = () => {
     {
       title: "Full Name",
       dataIndex: "fullname",
-      width: "30%",
+      width: "20%",
     },
     {
       title: "Role",
       dataIndex: "role",
       width: "20%",
+      render: (role) => {
+        let color;
+        if (role === "Back officer") {
+          color = 'magenta';
+        }
+        else if (role === "Collector") {
+          color = 'blue';
+        }
+        else {
+          color = 'gold';
+        }
+        return (
+          <Tag color={color}>
+            {role.toUpperCase()}
+          </Tag>
+        );
+      }
     },
     {
       title: "Date of birth",
@@ -105,14 +122,19 @@ const NewUser = () => {
       width: "5%",
       align: "center",
       render: (status) => {
-        return <div>{status === "free" ? "Free" : "Busy"}</div>;
-      },
+        let color = status === "free" ? 'green' : 'volcano';
+        return (
+            <Tag color={color}>
+              {status.toUpperCase()}
+            </Tag>
+          );
+        }
     },
     {
       title: "Created At",
       dataIndex: "created_at",
-      width: "20%",
-      align: "right",
+      width: "10%",
+      align: "left",
     },
   ];
 
@@ -130,12 +152,6 @@ const NewUser = () => {
         role: event,
       }));
     }
-  };
-
-  const onCreate = async () => {
-    // await user.addUser(submitUserData);
-    // setSubmitUserData({...defaultObject});
-    // setModal(false);
   };
 
   const formItems = [
@@ -299,6 +315,7 @@ const NewUser = () => {
                 className="modal__cancel"
                 onClick={() => {
                   setModal(false);
+                  setSubmitUserData({ ...defaultObject });
                 }}
               >
                 Cancel
@@ -308,21 +325,10 @@ const NewUser = () => {
           className="modal"
         >
           <Form
-            onFinish={(event) => {
-              onSubmitEmployee(event);
-            }}
+            onFinish={onSubmitEmployee}
             form={form}
           >
             {Items}
-            {/* <Button
-                className="modal__assign"
-                htmlType="submit"
-                // onClick={() => {
-                //   onCreate();
-                // }}
-              >
-                Create
-              </Button> */}
           </Form>
         </Modal>
       </div>

@@ -56,7 +56,7 @@ const Profile = () => {
         {
             label:"Name",
             name: "name",
-            value: userData.name
+            value: userData.fullname
         },
         {
             label:"Username",
@@ -80,7 +80,7 @@ const Profile = () => {
     return (
         <div className="popup">
             <div className="profile__body">
-              <div className="profile__img"> <img  src={userData.imgUrl} alt="Profile"/></div> 
+              <div className="profile__img"> <img  src={userData.avatar_URL} alt="Profile"/></div> 
             <Form
                 layout='vertical'
                 disabled={!isEdit}

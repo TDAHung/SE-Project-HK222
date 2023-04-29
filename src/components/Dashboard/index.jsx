@@ -135,29 +135,15 @@ const DashboardLayout = () => {
                             MAIN MENU
                         </Typography>
                         <Item
-                            title="Assign Task"
+                            title="Task"
                             to={pages.ASSIGN}
                             icon={<AssignmentIcon/>}
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        <Item
-                            title="View History"
-                            to={pages.HISTORY}
-                            icon={<HistoryIcon/>}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Chat"
-                            to={pages.CHAT}
-                            icon={<ChatIcon/>}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
                         {
                             userData.role === 'Back officer' ? <Item
-                            title="Add User"
+                            title="Employee"
                             to={`${pages.ADD}/${pages.USER}`}
                             icon={<MapIcon/>}
                             selected={selected}
@@ -167,7 +153,7 @@ const DashboardLayout = () => {
                         
                         {
                             userData.role === 'Back officer' ? <Item
-                            title="Add MCP"
+                            title="MCP"
                             to={`${pages.ADD}/${pages.MCP}`}
                             icon={<MapIcon/>}
                             selected={selected}
@@ -176,8 +162,8 @@ const DashboardLayout = () => {
                         }
 
                         {
-                            userData.type === 'Back officer' ? <Item
-                            title="Add Vehicle"
+                            userData.role === 'Back officer' ? <Item
+                            title="Vehicle"
                             to={`${pages.ADD}/${pages.VEHICLE}`}
                             icon={<MapIcon/>}
                             selected={selected}
@@ -187,7 +173,7 @@ const DashboardLayout = () => {
 
 
                         <Item
-                            title="Schedule"
+                            title="Calendar"
                             to={pages.SCHEDULE}
                             icon={<ScheduleIcon/>}
                             selected={selected}

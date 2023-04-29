@@ -1,7 +1,7 @@
 .assign{
     padding-left: 5rem;
     padding-top: 8rem;
-    width: 70%;
+    width: 100%;
 }
 
 .assign__header{
@@ -95,4 +95,8 @@
     font-family: 'Poppins';
     font-weight: 300;
     margin-left: 1rem;
+}
+
+.modale {
+    left: 45px;
 }
